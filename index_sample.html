@@ -1,0 +1,337 @@
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="./jquery.srollTo.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Swanky+and+Moo+Moo|Meie+Script|Indie+Flower' rel='stylesheet' type='text/css'>
+<style>
+body{
+	height:1000%;
+}
+
+.page{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Swanky and Moo Moo', cursive;
+  color:grey;
+  box-shadow: 0px -5px 25px #666;
+}
+.contentbox{
+	width:61.8%;
+	height:70%;
+	margin:10% auto;
+	overflow:auto;
+}
+
+.bookmark{
+	color:grey;
+	position:fixed;
+	right:0px;
+	cursor:pointer;
+	font-size:18px;
+	font-family: 'Swanky and Moo Moo', cursive;
+	z-index:110;
+}
+.bookmark:hover{
+	cursor:pointer;
+	text-shadow: 5px 5px 10px #666;
+}
+.overview{
+	background: black;
+}
+.experience{
+	background: white;
+}
+.extra{
+	background: silver;
+}
+
+#nutshell{
+	z-index:100;
+}
+#philosophy{
+	z-index:90;
+}
+#autobiography{
+	z-index:80;
+	opacity:.9;
+}
+#wetlab{
+	z-index:70;
+}
+#insilico{
+	z-index:60;
+}
+#projectmanagement{
+	z-index:50;
+}
+#authorship{
+	z-index:40;
+}
+#timeline{
+	z-index:30;
+}
+#contact{
+	z-index:20;
+}
+
+#nutshellmark{
+	top:5%;
+}
+#philosophymark{
+	top:15%;
+}
+#autobiographymark{
+	top:25%;
+}
+#labmark{
+	top:42%;
+}
+#labmark{
+	top:42%;
+}
+#scriptmark{
+	top:50%;
+}
+#writingmark{
+	top:67%;
+}
+#timelinemark{
+	top:85%;
+}
+#contactmark{
+	top:90%;
+}
+</style>
+</head>
+<body>
+<p class="bookmark" id="nutshellmark" onclick="scrollto('0')">In a nutshell</p>
+<p class="bookmark" id="philosophymark" onclick="scrollto('.15')">philosophy</p>
+<p class="bookmark" id="autobiographymark" onclick="scrollto('.25')">autobiography</p>
+<div class="bookmark" id="labmark" onclick="scrollto('.4')">Lab projects</div>
+<p class="bookmark" id="scriptmark" onclick="scrollto('.5')">Scripting</p>
+<p class="bookmark" id="writingmark" onclick="scrollto('.7')">Writings</p>
+<p class="bookmark" id="timelinemark" onclick="scrollto('.86')">Timeline</p>
+<p class="bookmark" id="contactmark" onclick="scrollto('.99')">Contact info</p>
+<div class="overview page" id="nutshell">
+	<div class="contentbox">
+		<h1>In a nutshell</h1>
+		<p>Lifeng Lin is a Chinese-born genome researcher living in the US, who is currently working as a bioinformatics scientist in the molecular diagnostics industry. He is equipped with a PhD degree in Plant Biology and programming skills from extensive trainings. He has been doing genome research since 2003 as a graduate student and later focused on oligonucleotide designs.</p>
+	</div>
+</div>
+<div class="overview page" id="philosophy">
+	<div class="contentbox">
+		<h1>Philosophy Statement</h1>
+		<h2>On Science and Industry</h2>
+		<p></p>
+		<h2>On Teaching</h2>
+		<p></p>
+		<h2>On Career Development</h2>
+		<p></p>
+	</div>
+</div>
+<div class="overview page" id="autobiography">
+	<div class="contentbox">
+		<h1>Autobiography</h1>
+		<p>Bioinformaticians are usually either programmers with some knowledge of biology, or, a biologist with some knowledge of programming. I am the latter. I spend seven years of my graduate school mostly between the lab and the greenhouse (as I was studying cotton), doing PCRs, running gels, doing hybridizations: collecting data for my projects. In the last two years of my graduate school, I have grown an keen interesting in scripting, which had lead me to teach myself PHP and Python.</p>
+		<p>I consider myself extremely lucky to have found a job as a full time bioinformatics scientist after I got my PhD. On the job, I have been able to apply many of my genomics trainings, and more importantly, practice and improve my programming skills. During this time, I am a member of the two-person team that is responsible for the successful design of several microbiology in vitro detection panels that went on the be cleared by the FDA. Also, my partner and I have build from scratch an internal biological database server, a lab access interface, a sequencing result processing system and a pipeline that automated the probe design process.</p>
+		<p>No skill set is complete without the mentioning of "project management". It is my personal belief that the ability to oversee a project from start to finish can only be learned through real-world practice and never from books or classes alone. Although I have participated in more than a few projects, I can only honestly say that I have handled two project completely solo. The first one was a side project branched off from my PhD proposed project. I conceived the idea, did the experiment and analysis, and it went on the become an official part of my thesis and a large part of a journal publication. The second one is the automated sequencing result processing system that I developed to facilitate with company's increasing need. I am interested in design control and has been educating myself on the subject. You probably noticed that both these projects are solo projects. Yes, I am yet to be given an opportunity to be in charge of a larger project, unfortunately.</p>
+		<p>So what makes me unique? For me, my most precious asset is not in the lab trainings or the programming skills or even the management skills (which I will continue to develop), but in my non-analytical right-brain. For example: language learnings come easy for me. I have no accent in either English or Mandarin Chinese. I am getting a lot better in understanding and speaking German. I love graphical design, song-writing, photography and architecture. If there is ever a motto for me, I guess it would be “try everything.” So overall, I would probably be better suited to be called an artist who happens to have a PhD in biology and likes programming.</P>
+	</div>
+</div>
+<div class="experience page" id="wetlab">
+	<div class="contentbox">
+	<h1>Lab projects</h1>
+	<div class="subproject">
+		<h2>2002--Arabidopsis gene mapping</h2>
+		<p>In 2002, I participated in a gene cloning project as an undergraduate research assistant. This experience trained me in basic lab techniques and genomic concepts as well as simple primer design for a targeted region.</p>
+	</div>
+	<div class="subproject">
+		<h2>2003--Cotton Physical Map</h2>
+		<p>Continuing my research on plant genomes, I took on the cotton genome physical mapping project at University of Georgia, Plant Genome Mapping Lab. Without a reference genome to guide the assembly, the physical mapping used old-fashioned BAC-based fingerprinting method. It is a complicated and time-consuming process which involves BAC　library handling, RFLP probe design and hybridization, SSR and SSLP molecular marker design and evaluations, fingerprinting contig constructions, just to mane a few. This result was later published in BMC-Genomics and served as a reference for later cotton whole genome sequencing project.</p>
+	</div>
+	<div class="subproject">
+		<h2>2005--Chromosome-walking</h2>
+		<p>A single gene mutation in Li2 gene resulted in a lint-less phenotype. This elicited great interest. My second project in graduate school involves the attemp to clone this gene through chromosome walking. The gene is fine-mapped to a several hundred kb region by this approach.</p>	
+	</div>
+	</div>
+</div>
+<div class="experience page" id="insilico">
+	<div class="contentbox">
+	<h1>By the computer</h1>
+	<div class="subproject">
+		<h2>Synteny and Collinearity across Plant Genomes</h2>
+		<p>One particular branch of comparative genomic research deals with the conservation and evolution of gene order: the number of genome-level duplications and the reshuffling of the genome after such events. The gene order conservation is quite apparaent across monocot species; in endicot species, this research is complicated by the extensive genome duplication and gene loss events in that lineage. As I was charged with cotton genome physical map assembly without a reference genome, this genome collinearity become a powerful tool for me. This also exposed me to the wonderful world of programming and bioinformatics.</p>
+		<p>I worked with my labmate on the creation of some of the very first bioinformatics packages in dealing with synteny and collinearity searches across distantly related genomes.</p>
+	</div>
+	<div class="subproject">
+		<h2>Oligonucleotide thermodynamics</h2>
+		<p>The major responsibility for my work at Nanosphere is to design all-inclusive, non-cross-reacting, thermodynamically-robust and multiplex-compatible oligonucleotide probes. We have developed a state-of-the-art in-house protocal and automated pipeline, ensuring that our oligos are the best in the field.</p>
+	</div>
+	<div class="subproject">
+		<h2>Automation of Lab-data Processing</h2>
+		<p>To facilitate the product development, we developed several database-driven web application for automated processing of experimental data.</p>	
+	</div>
+	</div>
+</div>
+<div class="experience page" id="projectmanagement">
+	<div class="contentbox">
+		<h1>Effective Oversight</h1>
+	</div>
+</div>
+<div class="experience page" id="authorship">
+	<div class="contentbox">
+		<h1>Authorship</h1>
+		<div class="subproject">
+			<h2>Journal Publications</h2>
+			<p></p>	
+		</div>
+		<div class="subproject">
+			<h2>Blogs</h2>
+			<p></p>	
+		</div>
+	</div>
+</div>
+<div class="extra page" id="timeline">
+	<div id="time_axis">
+		<li>1999</li>
+		<li>2000</li>
+		<li>2001</li>
+		<li>2002</li>
+		<li>2003</li>
+		<li>2004</li>
+		<li>2005</li>
+		<li>2006</li>
+		<li>2007</li>
+		<li>2008</li>
+		<li>2009</li>
+		<li>2010</li>
+		<li>2011</li>
+		<li>2012</li>
+		<li>2013</li>
+		<li>2014</li>
+	</div>
+	<div id="timeblock">
+		<div id="1999">
+		</div>
+		<div id="2003">
+		</div>
+		<div id="2008">
+		</div>
+		<div id="2010">
+		</div>
+		<div id="2012">
+		</div>
+	</div>
+</div>
+<div class="extra page" id="contact">
+	<div class="contentbox">
+		<h1>Get in touch</h1>
+		<div class="subproject">
+			<h2>Linked-in</h2>
+			<p></p>	
+		</div>
+		<div class="subproject">
+			<h2>Email</h2>
+			<p></p>	
+		</div>
+	</div>
+</div>
+</body>
+<script>
+$(window).scroll(function() {	
+	var toppos=jQuery(window).scrollTop();
+	var scrollHeight = jQuery(window).height();
+	var topperc=(toppos/(scrollHeight));
+//examples:
+//	jQuery('#background').css('background','rgba(22,22,22,'+toppos/1000+')');
+//	jQuery('#bigletters').css('left',toppos/10+'px');
+//	jQuery('#autobiography').css('top',-300+topperc*1000+'%');
+//	jQuery('#nutshell').css('opacity',1-topperc*10);
+//	jQuery('#philosophy').css('opacity',2.5-topperc*10);
+
+	jQuery('.bookmark').css('fontSize',18);
+	jQuery('#nutshellmark').css('fontSize',25);
+	if(topperc > 0.1){
+		$('#nutshell').fadeOut("slow");
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#philosophymark').css('fontSize',25);
+	}
+	else{
+		$('#nutshell').fadeIn("slow");
+	}
+	
+	if(topperc > 0.2){
+		$('#philosophy').fadeOut("slow");
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#autobiographymark').css('fontSize',25);
+	}
+	else{
+		$('#philosophy').fadeIn("slow");
+	}
+	if(topperc > 0.3){
+		jQuery('#autobiography').css('top',-300+topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#labmark').css('fontSize',25);
+	}
+	else{
+		jQuery('#autobiography').css('top','0px');
+	}
+	if(topperc > 0.45){
+		$('#wetlab').fadeOut("slow");
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#scriptmark').css('fontSize',25);
+	}
+	else{
+		$('#wetlab').fadeIn("slow");
+	}
+	if(topperc > 0.60){
+		$('#insilico').fadeOut("slow");
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#writingmark').css('fontSize',25);
+	}
+	else{
+		$('#insilico').fadeIn("slow");
+	}
+//	if(topperc > 0.65){
+		$('#projectmanagement').fadeOut("slow");
+		//jQuery('.bookmark').css('fontSize',18);
+		//jQuery('#timelinemark').css('fontSize',25);		
+//	}
+//	else{
+//		$('#projectmanagement').fadeIn("slow");	
+//	}
+	if(topperc > 0.75){
+		jQuery('#authorship').css('top',-750+topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#timelinemark').css('fontSize',25);
+	}
+	else{
+		jQuery('#authorship').css('top','0px');
+	}
+	if(topperc > 0.90){
+		$('#timeline').fadeOut("slow");	
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#contactmark').css('fontSize',25);		
+	}
+	else{
+		$('#timeline').fadeIn("slow");	
+	}
+	
+
+});
+
+	//navigation functions
+	function scrollto(topperc){
+		var Height = jQuery(window).height();
+		var ypos=topperc*Height;
+		$("html, body").animate({ scrollTop: ypos}, 500);
+	}	
+</script>
+</html>

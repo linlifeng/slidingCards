@@ -1,0 +1,377 @@
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#nav').localScroll(800);
+	
+		//.parallax(xPosition, speedFactor, outerHeight) options:
+		//xPosition - Horizontal position of the element
+		//inertia - speed to move relative to vertical scroll. Example: 0.1 is one tenth the speed of scrolling, 2 is twice the speed of scrolling
+		//outerHeight (true/false) - Whether or not jQuery should use it's outerHeight option to determine when a section is in the viewport
+		$('#intro').parallax("50%", 0.1);
+		$('#second').parallax("50%", 0.1);
+		$('.bg').parallax("50%", 0.4);
+		$('#third').parallax("50%", 0.3);
+
+	})
+	</script>
+
+	<script src="./jquery.srollTo.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Swanky+and+Moo+Moo|Meie+Script|Indie+Flower' rel='stylesheet' type='text/css'>
+<style>
+
+
+/* overall framework*/
+body{
+	height:1000%;
+}
+
+.page{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Swanky and Moo Moo', cursive;
+  color:grey;
+  box-shadow: 0px -5px 25px #666;
+}
+
+.contentbox{
+	width:61.8%;
+	height:70%;
+	margin:10% auto;
+	overflow:auto;
+}
+
+.contentbox p{
+}
+
+.contentbox h1{
+}
+
+.twoCol img{
+    float:left;
+    width:50%;
+}
+.twoCol div{
+    float:left;
+    width:50%;
+}
+
+.bookmark{
+	color:grey;
+	position:fixed;
+	right:0px;
+	cursor:pointer;
+	font-size:18px;
+	font-family: 'Swanky and Moo Moo', cursive;
+	z-index:110;
+}
+.bookmark:hover{
+	cursor:pointer;
+	text-shadow: 5px 5px 10px #666;
+    -webkit-transform: scale(1.2);
+}
+
+
+
+
+/*background classes*/
+.blackPane{
+	background: black;
+}
+.whitePane{
+	background: white;
+}
+.silverPane{
+	background: silver;
+}
+
+
+/*layers*/
+#layer100{
+	z-index:100;
+}
+#layer90{
+	z-index:90;
+}
+#layer80{
+	z-index:80;
+}
+#layer70{
+	z-index:70;
+}
+#layer60{
+	z-index:60;
+}
+#layer50{
+	z-index:50;
+}
+#layer40{
+	z-index:40;
+}
+#layer30{
+	z-index:30;
+}
+#layer20{
+	z-index:20;
+}
+#layer10{
+	z-index:10;
+}
+
+
+/*tags for each section*/
+#layer100tag{
+	top:0%;
+}
+#layer90tag{
+	top:10%;
+}
+#layer80tag{
+	top:20%;
+}
+#layer70tag{
+	top:30%;
+}
+#layer60tag{
+	top:40%;
+}
+#layer50tag{
+	top:50%;
+}
+#layer40tag{
+	top:60%;
+}
+#layer30tag{
+	top:70%;
+}
+#layer20tag{
+	top:80%;
+}
+#layer10tag{
+	top:90%;
+}
+
+</style>
+</head>
+<body>
+
+<p class="bookmark" id="layer100tag" onclick="scrollto('0')">Layer 100</p>
+<p class="bookmark" id="layer90tag" onclick="scrollto('.1')">Layer 90</p>
+<p class="bookmark" id="layer80tag" onclick="scrollto('.2')">Layer 80</p>
+<p class="bookmark" id="layer70tag" onclick="scrollto('.3')">Layer 70</p>
+<p class="bookmark" id="layer60tag" onclick="scrollto('.4')">Layer 60</p>
+<p class="bookmark" id="layer50tag" onclick="scrollto('.5')">Layer 50</p>
+<p class="bookmark" id="layer40tag" onclick="scrollto('.6')">Layer 40</p>
+<p class="bookmark" id="layer30tag" onclick="scrollto('.7')">Layer 30</p>
+<p class="bookmark" id="layer20tag" onclick="scrollto('.8')">Layer 20</p>
+<p class="bookmark" id="layer10tag" onclick="scrollto('.9')">Layer 10</p>
+
+
+<div class="blackPane page" id="layer100">
+	<div class="contentbox">
+		<h1>This is the Top Layer</h1>
+		<p>This is the content of the top layer.</p>
+	</div>
+</div>
+<div class="whitePane page" id="layer90">
+	<div class="contentbox twoCol">
+		<h1>layer 90</h1>
+        <div>
+		<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+        </div>
+        <img src="https://openclipart.org/download/272834/Donald-Trump-Sketch.svg" />
+	</div>
+</div>
+<div class="whitePane page" id="layer80">
+	<div class="contentbox">
+		<h1>layer 80</h1>
+		<p></p>
+	</div>
+</div>
+<div class="whitePane page" id="layer70">
+	<div class="contentbox">
+		<h1>layer 70</h1>
+		<div class="subproject">
+			<h2>subsection1</h2>
+			<p>content</p>
+		</div>
+		<div class="subproject">
+			<h2>subsection2</h2>
+			<p>Content.</p>
+		</div>
+	</div>
+</div>
+<div class="whitePane page" id="layer60">
+	<div class="contentbox">
+	<h1>layer 60</h1>
+
+	</div>
+</div>
+<div class="whitePane page" id="layer50">
+	<div class="contentbox">
+		<h1>layer 50</h1>
+	</div>
+</div>
+<div class="whitePane page" id="layer40">
+	<div class="contentbox">
+		<h1>layer 40</h1>
+
+	</div>
+</div>
+<div class="whitePane page" id="layer30">
+	<div class="contentbox">
+		<h1>layer 30</h1>
+
+	</div>
+</div>
+<div class="whitePane page" id="layer20">
+	<div class="contentbox">
+		<h1>layer 20</h1>
+	</div>
+</div>
+
+
+<div class="silverPane page" id="layer10">
+	<div class="contentbox">
+		<h1>Botton layer</h1>
+	</div>
+</div>
+
+</body>
+<script>
+
+$(window).scroll(function() {	
+	var toppos=jQuery(window).scrollTop();
+	var scrollHeight = jQuery(window).height();
+	var topperc=(toppos/(scrollHeight));
+//examples:
+//	jQuery('#background').css('background','rgba(22,22,22,'+topperc+')');
+//	jQuery('#bigletters').css('left',toppos/10+'px');
+//	jQuery('#autobiography').css('top',-300+topperc*1000+'%');
+//	jQuery('#nutshell').css('opacity',1-topperc*10);
+//	jQuery('#philosophy').css('opacity',2.5-topperc*10);
+
+	jQuery('.bookmark').css('fontSize',18);
+	jQuery('#layer100tag').css('fontSize',25);
+
+	
+	if(topperc > 0.0 ){
+		//$('#layer100').fadeOut("slow");
+		jQuery('#layer100').css('top',-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer90tag').css('fontSize',25);
+	}
+	else{
+		//$('#layer100').fadeIn("slow");
+		jQuery('#layer100').css('top','0%');
+        $(".bookmark").fadeIn('slow');	
+	}
+	
+	if(topperc > 0.1 ){
+		//$('#layer90').fadeOut("slow");
+		jQuery('#layer90').css('top',100-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer80tag').css('fontSize',25);
+	}
+	else{
+		//$('#layer90').fadeIn("slow");
+		jQuery('#layer90').css('top','0%');
+	}
+
+	if(topperc > 0.2){
+		jQuery('#layer80').css('top',200-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer70tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer80').css('top','0px');
+	}
+
+	if(topperc > 0.3){
+		jQuery('#layer70').css('top',300-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer60tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer70').css('top','0px');
+	}
+
+	if(topperc > 0.4){
+		jQuery('#layer60').css('top',400-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer50tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer60').css('top','0px');
+	}
+
+	if(topperc > 0.5){
+		jQuery('#layer50').css('top',500-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer40tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer50').css('top','0px');
+	}
+
+	if(topperc > 0.6){
+		jQuery('#layer40').css('top',600-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer30tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer40').css('top','0px');
+	}
+
+	if(topperc > 0.7){
+		jQuery('#layer30').css('top',700-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer20tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer30').css('top','0px');
+	}
+
+
+	if(topperc > 0.8){
+		jQuery('#layer20').css('top',800-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer10tag').css('fontSize',25);		
+	}
+	else{
+		jQuery('#layer20').css('top','0px');	
+	}
+	
+
+});
+
+	//navigation functions
+	function scrollto(topperc){
+		var Height = jQuery(window).height();
+		var ypos=topperc*Height;
+		$("html, body").animate({ scrollTop: ypos}, 500);
+	}
+
+//toggle side-bar
+$( "body" ).mousemove(function( event ) {
+		var Width = jQuery(window).width();
+		var hotLine = 0.9;
+        cursorXperc = event.pageX/Width;
+        if(cursorXperc > hotLine){
+            $(".bookmark").fadeIn();
+        }
+        else{
+            $(".bookmark").fadeOut();
+        }
+});
+	
+</script>
+</html>
