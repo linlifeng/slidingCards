@@ -1,0 +1,17 @@
+{% if pageType == 'cover' %}
+<div class="whitePane page cover" id = {{ pageLayer }}>
+{% elif pageType == 'backCover' %}
+<div class="whitePane page cover" id = {{ pageLayer }}>
+{% else %}
+<div class="whitePane page" id = {{ pageLayer }}>
+{% endif %}
+	<div class="contentbox withImage">
+		<h1>{{ pageTitle }}</h1>
+		<div class="descriptions half">
+			<h2>{{ pageText }}</h2>
+		</div>
+		<div class="contentImage">
+		    <img  src= {{ pagePic }} />
+		</div>
+	</div>
+</div>
