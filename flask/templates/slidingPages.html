@@ -1,0 +1,423 @@
+<!--
+<html>
+    <head>
+        <title>{{ bookTitle }}</title>
+    </head>
+    <body>
+        <h1>{{ bookTitle }}</h1>
+		<h2>With {{ pageCnt }} pages</h2>
+    </body>
+-->
+
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('#nav').localScroll(800);
+		$('#intro').parallax("50%", 0.1);
+		$('#second').parallax("50%", 0.1);
+		$('.bg').parallax("50%", 0.4);
+		$('#third').parallax("50%", 0.3);
+	})
+	</script>
+    <link href='https://fonts.googleapis.com/css?family=Swanky+and+Moo+Moo|Meie+Script|Indie+Flower' rel='stylesheet' type='text/css'>
+<style>
+body{
+	height:1000%;
+}
+
+.page{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Indie Flower', cursive;
+  color:grey;
+  box-shadow: 0px -5px 25px #666;
+}
+.contentbox{
+	width:80%;
+	height:70%;
+	margin:10% auto;
+	overflow:auto;
+}
+
+.descriptions{
+    font-family: 'Indie Flower', cursive;
+}
+.descriptions h2{
+	font-size: 40px;
+}
+.half{
+    width: 49%;
+    float:left;
+}
+
+.contentImage {
+    float: right;
+    width: 49%;
+
+}
+.contentImage img{
+    height:80%;
+
+}
+
+.bookmark{
+	color:grey;
+	position:fixed;
+	right:0px;
+	cursor:pointer;
+	font-size:18px;
+	font-family: 'Indie Flower', cursive;
+	z-index:110;
+}
+.bookmark:hover{
+	cursor:pointer;
+	text-shadow: 5px 5px 10px #666;
+}
+.blackPane{
+	background: black;
+}
+.whitePane{
+	background: white;
+}
+.silverPane{
+	background: silver;
+}
+
+
+/*layers*/
+#layer100{
+	z-index:100;
+}
+#layer90{
+	z-index:90;
+}
+#layer80{
+	z-index:80;
+}
+#layer70{
+	z-index:70;
+}
+#layer60{
+	z-index:60;
+}
+#layer50{
+	z-index:50;
+}
+#layer40{
+	z-index:40;
+}
+#layer30{
+	z-index:30;
+}
+#layer20{
+	z-index:20;
+}
+#layer10{
+	z-index:10;
+}
+
+
+/*tags for each section*/
+#layer100tag{
+	top:0%;
+}
+#layer90tag{
+	top:10%;
+}
+#layer80tag{
+	top:20%;
+}
+#layer70tag{
+	top:30%;
+}
+#layer60tag{
+	top:40%;
+}
+#layer50tag{
+	top:50%;
+}
+#layer40tag{
+	top:60%;
+}
+#layer30tag{
+	top:70%;
+}
+#layer20tag{
+	top:80%;
+}
+#layer10tag{
+	top:90%;
+}
+
+.cover{
+  background: url("/static/book1/bg.png") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+</head>
+
+
+<body>
+
+<p class="bookmark" id="layer100tag" onclick="scrollto('0')">Cover</p>
+<p class="bookmark" id="layer90tag" onclick="scrollto('.1')">Page 1</p>
+<p class="bookmark" id="layer80tag" onclick="scrollto('.2')">Page 2</p>
+<p class="bookmark" id="layer70tag" onclick="scrollto('.3')">Page 3</p>
+<p class="bookmark" id="layer60tag" onclick="scrollto('.4')">Page 4</p>
+<p class="bookmark" id="layer50tag" onclick="scrollto('.5')">Page 5</p>
+<p class="bookmark" id="layer40tag" onclick="scrollto('.6')">Page 6</p>
+<p class="bookmark" id="layer30tag" onclick="scrollto('.7')">Page 7</p>
+<p class="bookmark" id="layer20tag" onclick="scrollto('.8')">Page 8</p>
+<p class="bookmark" id="layer10tag" onclick="scrollto('.9')">About this book</p>
+
+
+<div class="blackPane page cover" id="layer100">
+	<div class="contentbox">
+		<h1>{{ bookTitle }} </h1>
+		<p>A book I can read myself - book 1</p>
+	</div>
+</div>
+<div class="whitePane page" id="layer90">
+	<div class="contentbox withImage">
+		<h1></h1>
+		<div class="descriptions half">
+			<h2>Lawrence was drawing pictures and he ran out of paper</h2>
+			<h2>"I will just draw on the wall then!" said Lawrence.</h2>
+			<h2>"Lawrence!!" Mom saw this and was very mad.</h2>
+		</div>
+		<div class="contentImage">
+		<img  src="./static/book1/page1.png" />
+		</div>
+	</div>
+</div>
+<div class="whitePane page" id="layer80">
+	<div class="contentbox withImage">
+		<h1></h1>
+		<div class="descriptions half">
+			<h2>Lawrence is super scared.</h2>
+			<h2>He doesn't know what to do.</h2>
+			<h2>He does not like it when mom gets mad.</h2>
+		</div>
+		<div class="contentImage">
+		<img  src="./static/book1/page2.png" />
+		</div>
+	</div>
+</div>
+<div class="whitePane page" id="layer70">
+	<div class="contentbox withImage">
+		<h1></h1>
+		<div class="descriptions half">
+			<h2>Lawrence feels the world is chasing him.</h2>
+			<h2>He wants to run away and hide.</h2>
+			<h2>So mom will not find him.</h2>
+		</div>
+		<div class="contentImage">
+		<img  src="./static/book1/page3.png" />
+		</div>
+	</div>
+</div>
+<div class="whitePane page" id="layer60">
+	<div class="contentbox withImage">
+		<h1></h1>
+		<div class="descriptions half">
+			<h2>Mom went off to find Lawrence.</h2>
+			<h2>She climbed over mountains of doodles.</h2>
+			<h2></h2>
+		</div>
+		<div class="contentImage">
+		<img  src="./static/book1/page4.png" />
+		</div>
+	</div>
+</div>
+<div class="whitePane page" id="layer50">
+	<div class="contentbox withImage">
+		<h1></h1>
+		<div class="descriptions half">
+			<h2>However, Mom can't find Lawrence anywhere.</h2>
+			<h2>She is very sad and tired.</h2>
+			<h2>She missed Lawrence so much.</h2>
+			<h2></h2>
+		</div>
+		<div class="contentImage">
+		<img  src="./static/book1/page5.png" />
+		</div>
+	</div>
+</div>
+<div class="whitePane page" id="layer40">
+	<div class="contentbox withImage">
+		<h1></h1>
+		<div class="descriptions half">
+			<h2>Mom met a monster that looks like Lawrence, but with paint brushes as his face and paint bucket as his body.</h2>
+			<h2>She told the monster that she missed Lawrence.</h2>
+			<h2></h2>
+		</div>
+		<div class="contentImage">
+		<img  src="./static/book1/page6.png" />
+		</div>
+	</div>
+</div>
+<div class="whitePane page" id="layer30">
+	<div class="contentbox withImage">
+		<h1></h1>
+		<div class="descriptions half">
+			<h2>Lawrence came crawling out from under the rug.</h2>
+			<h2>Mom is not mad anymore.</h2>
+			<h2></h2>
+		</div>
+		<div class="contentImage">
+		<img  src="./static/book1/page7.png" />
+		</div>
+	</div>
+</div>
+<div class="whitePane page" id="layer20">
+	<div class="contentbox withImage">
+		<h1></h1>
+		<div class="descriptions half">
+			<h2>I know I can be messy sometimes.</h2>
+			<h2>But mom loves me no matter what.</h2>
+			<h2></h2>
+		</div>
+		<div class="contentImage">
+		<img  src="./static/book1/page8.png" />
+		</div>
+	</div>
+</div>
+
+
+<div class="silverPane page" id="layer10">
+	<div class="contentbox">
+		<h1>About This Books</h1>
+		<p>出处：天津麦田文化传播有限公司</p>
+	</div>
+</div>
+
+</body>
+<script>
+
+$(window).scroll(function() {
+	var toppos=jQuery(window).scrollTop();
+	var scrollHeight = jQuery(window).height();
+	var topperc=(toppos/(scrollHeight));
+//examples:
+//	jQuery('#background').css('background','rgba(22,22,22,'+topperc+')');
+//	jQuery('#bigletters').css('left',toppos/10+'px');
+//	jQuery('#autobiography').css('top',-300+topperc*1000+'%');
+//	jQuery('#nutshell').css('opacity',1-topperc*10);
+//	jQuery('#philosophy').css('opacity',2.5-topperc*10);
+
+	jQuery('.bookmark').css('fontSize',18);
+	jQuery('#layer100tag').css('fontSize',25);
+
+
+	if(topperc > 0.0 ){
+		//$('#layer100').fadeOut("slow");
+		jQuery('#layer100').css('top',-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer90tag').css('fontSize',25);
+	}
+	else{
+		//$('#layer100').fadeIn("slow");
+		jQuery('#layer100').css('top','0%');
+
+	}
+
+	if(topperc > 0.1 ){
+		//$('#layer90').fadeOut("slow");
+		jQuery('#layer90').css('top',100-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer80tag').css('fontSize',25);
+	}
+	else{
+		//$('#layer90').fadeIn("slow");
+		jQuery('#layer90').css('top','0%');
+	}
+
+	if(topperc > 0.2){
+		jQuery('#layer80').css('top',200-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer70tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer80').css('top','0px');
+	}
+
+	if(topperc > 0.3){
+		jQuery('#layer70').css('top',300-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer60tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer70').css('top','0px');
+	}
+
+	if(topperc > 0.4){
+		jQuery('#layer60').css('top',400-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer50tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer60').css('top','0px');
+	}
+
+	if(topperc > 0.5){
+		jQuery('#layer50').css('top',500-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer40tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer50').css('top','0px');
+	}
+
+	if(topperc > 0.6){
+		jQuery('#layer40').css('top',600-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer30tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer40').css('top','0px');
+	}
+
+	if(topperc > 0.7){
+		jQuery('#layer30').css('top',700-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer20tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer30').css('top','0px');
+	}
+
+
+	if(topperc > 0.8){
+		jQuery('#layer20').css('top',800-topperc*1000+'%');
+		jQuery('.bookmark').css('fontSize',18);
+		jQuery('#layer10tag').css('fontSize',25);
+	}
+	else{
+		jQuery('#layer20').css('top','0px');
+	}
+
+
+});
+
+	//navigation functions
+	function scrollto(topperc){
+		var Height = jQuery(window).height();
+		var ypos=topperc*Height;
+		$("html, body").animate({ scrollTop: ypos}, 500);
+	}
+
+</script>
+</html>
+-->
