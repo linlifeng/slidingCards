@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-import json
+import json, os
 
 MOCK_PAGES = {
     "cover": {
@@ -75,12 +75,13 @@ MOCK_PAGES = {
 }
 
 MOCK_BOOK = {
-    "Title":"testBookTitle",
-    "TitlePic":"placeholder for picture url for title",
+    "Title": "testBookTitle",
+    "TitlePic": "placeholder for picture url for title",
     "Pages": MOCK_PAGES
 }
 
 app = Flask(__name__)
+
 
 @app.route("/")
 def home():
@@ -92,50 +93,47 @@ def home():
     return page
 
 
-@app.route("/generate_page", methods = ['POST', 'GET'])
-def generate_bookpage(pageData = MOCK_PAGES):
-    data = pageData
-    pageTitle = data['pageTitle']
+@app.route("/generate_page", methods=['POST', 'GET'])
+def generate_bookpage(page_data=MOCK_PAGES):
+    data = page_data
+    page_title = data['pageTitle']
     if 'pagePic' in data:
-        pagePic = data['pagePic']
+        page_pic = data['pagePic']
     else:
-        pagePic = None
-    pageText = data['pageText']
-    pageLayer = data['pageLayer']
-    pageType  = data['pageType']
+        page_pic = None
+    page_text = data['pageText']
+    page_layer = data['pageLayer']
+    page_type = data['pageType']
     if 'pageBackground' in data:
-        pageBackground = data['pageBackground']
+        page_background = data['pageBackground']
     else:
-        pageBackground = None
+        page_background = None
     return render_template(
         "page.html",
-        pageTitle = pageTitle,
-        pagePic = pagePic,
-        pageText = pageText,
-        pageLayer = pageLayer,
-        pageType = pageType,
-        pageBackground = pageBackground
+        pageTitle=page_title,
+        pagePic=page_pic,
+        pageText=page_text,
+        pageLayer=page_layer,
+        pageType=page_type,
+        pageBackground=page_background
     )
 
-@app.route("/generate_book", methods = ['POST', 'GET'])
-def generate_book(contentJson = MOCK_BOOK):
-    data = contentJson
-    bookTitle = data['Title']
-    coverPic  = data['TitlePic']
+
+@app.route("/generate_book", methods=['POST', 'GET'])
+def generate_book(content_json=MOCK_BOOK):
+    data = content_json
+    book_title = data['Title']
     pages = []
-    for pageName in data['Pages']:
-        #print(pageName)
-        pageHtml = generate_bookpage(pageData = data['Pages'][pageName])
-        pages.append(pageHtml)
-    pageCnt   = len(pages)
+    for page_name in data['Pages']:
+        page_html = generate_bookpage(page_data=data['Pages'][page_name])
+        pages.append(page_html)
+    page_cnt = len(pages)
     return render_template(
         "slidingPages.html",
-        bookTitle = bookTitle,
-        pageCnt   = pageCnt,
-        pages     = pages
+        bookTitle=book_title,
+        pageCnt=page_cnt,
+        pages=pages
     )
-
-
 
 
 @app.route("/book_generator")
@@ -147,28 +145,44 @@ def book_input_page():
 
     return page
 
+
 @app.route("/book1")
 def book1():
-    contentFile = open('/Users/lifenglin/dev/sites/slidingCards/flask/static/book1/book1.json', 'r')
-    contentJson = json.load(contentFile)
+    json_path = os.path.join(app.root_path, 'static/book1/book1.json')
+    content_file = open(json_path, 'r')
+    content_json = json.load(content_file)
     book = {
         "Title": "book1",
         "TitlePic": "placeholder for picture url for title",
-        "Pages": contentJson
+        "Pages": content_json
     }
-    return generate_book(contentJson=book)
+    return generate_book(content_json=book)
+
 
 @app.route("/book2")
 def book2():
-    contentFile = open('/Users/lifenglin/dev/sites/slidingCards/flask/static/book2/book2.json', 'r')
-    contentJson = json.load(contentFile)
+    json_path = os.path.join(app.root_path, 'static/book2/book2.json')
+    content_file = open(json_path, 'r')
+    content_json = json.load(content_file)
     book = {
         "Title": "book2",
         "TitlePic": "placeholder for picture url for title",
-        "Pages": contentJson
+        "Pages": content_json
     }
-    return generate_book(contentJson=book)
+    return generate_book(content_json=book)
 
+
+@app.route("/book3")
+def book3():
+    json_path = os.path.join(app.root_path, 'static/book3/book3.json')
+    content_file = open(json_path, 'r')
+    content_json = json.load(content_file)
+    book = {
+        "Title": "book2",
+        "TitlePic": "placeholder for picture url for title",
+        "Pages": content_json
+    }
+    return generate_book(content_json=book)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,72 @@
+{
+    "cover": {
+        "pageBackground": "https://static1.srcdn.com/wordpress/wp-content/uploads/2019/11/Rick-and-Morty-Season-4-Returning-Character.jpg",
+        "pageType": "cover",
+        "pageLayer": "layer100",
+        "pageTitle": "characters of",
+        "pageText": "Rick and Morty"
+    },
+    "page1": {
+        "pageType": "content",
+        "pageLayer": "layer90",
+        "pageTitle": "",
+        "pageText": "Rick Sanchez",
+        "pagePic": "https://static.miraheze.org/toxicfandomsandhatedomswiki/thumb/9/91/Rick_Sanchez_Render.png/330px-Rick_Sanchez_Render.png"
+    },
+    "page2": {
+        "pageType": "content",
+        "pageLayer": "layer80",
+        "pageTitle": "",
+        "pageText": "Morty Smith",
+        "pagePic": "https://sketchok.com/images/articles/01-cartoons/007-rick-and-morty/07/11.jpg"
+    },
+    "page3": {
+        "pageType": "content",
+        "pageLayer": "layer70",
+        "pageTitle": "",
+        "pageText": "Summer Smith",
+        "pagePic": "https://sketchok.com/images/articles/01-cartoons/007-rick-and-morty/05/12.jpg"
+    },
+    "page4": {
+        "pageType": "content",
+        "pageLayer": "layer60",
+        "pageTitle": "",
+        "pageText": "Beth Smith",
+        "pagePic": "https://sketchok.com/images/articles/01-cartoons/007-rick-and-morty/04/11.jpg"
+    },
+    "page5": {
+        "pageType": "content",
+        "pageLayer": "layer50",
+        "pageTitle": "",
+        "pageText": "Jerry Smith",
+        "pagePic": "https://sketchok.com/images/articles/01-cartoons/007-rick-and-morty/06/12.jpg"
+    },
+    "page6": {
+        "pageType": "content",
+        "pageLayer": "layer40",
+        "pageTitle": "",
+        "pageText": "Jessica",
+        "pagePic": "https://i.pinimg.com/originals/9f/05/e6/9f05e6e9dfc82fadc75e5de5ec74a4bb.png"
+    },
+    "page7": {
+        "pageType": "content",
+        "pageLayer": "layer30",
+        "pageTitle": "",
+        "pageText": "Squanchy",
+        "pagePic": "https://vignette.wikia.nocookie.net/rickandmorty/images/1/16/Squanchy_.png/revision/latest?cb=20160830140218"
+    },
+    "page8": {
+        "pageType": "content",
+        "pageLayer": "layer20",
+        "pageTitle": "",
+        "pageText": "Mr. Poopybutthole",
+        "pagePic": "https://vignette.wikia.nocookie.net/rickandmorty/images/3/37/Mr_poopy_butthole.png/revision/latest?cb=20150819161234"
+    },
+    "backCover": {
+        "pageBackground": "https://miro.medium.com/max/3840/1*j55XGyX4ZGimd0mjGeYXQQ.png",
+        "pageType": "backCover",
+        "pageLayer": "layer10",
+        "pageTitle": "That's it folks",
+        "pageText": "Nothing to see here."
+    }
+}
