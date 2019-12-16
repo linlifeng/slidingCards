@@ -1,7 +1,7 @@
 {
     "cover": {
         "pageBackground": "https://i.ytimg.com/vi/B6493AOTo5U/maxresdefault.jpg",
-        "pageType": "cover",
+        "pageType": "dualPage",
         "pageLayer": "layer100",
         "pageTitle": "book2",
         "pageText": "Test book2",

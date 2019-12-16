@@ -22,31 +22,33 @@
       box-shadow: 0px -5px 25px #666;
     }
     .contentbox{
-        width:80%;
-        height:70%;
-        margin:10% auto;
+        width:100%;
+        height:100%;
+        /*margin:10% auto;*/
         overflow:auto;
     }
 
-    .descriptions{
+    .descriptionBox{
         font-family: 'Indie Flower', cursive;
+        padding:10%;
     }
-    .descriptions h2{
+    .descriptionBox h2{
         font-size: 40px;
     }
     .half{
-        width: 49%;
+        padding: 5%;
+        width: 40%;
         float:left;
     }
 
     .contentImage {
         float: right;
         width: 49%;
-
+        height: 100%;
     }
     .contentImage img{
+        padding-top: 10%;
         height:80%;
-
     }
 
     .bookmark{
@@ -160,8 +162,8 @@
 
 
 <body>
-    <div id = "pageIndexToggle" onclick="toggleIndexBar()"></div>
-    <div id="pageIndexBar">
+    <div id = "pageIndexToggle"></div>
+    <div id="pageIndexBar" style="display:none">
         <p class="bookmark" id="layer100tag" onclick="scrollto('0')">Cover</p>
         <p class="bookmark" id="layer90tag" onclick="scrollto('.1')">Page 1</p>
         <p class="bookmark" id="layer80tag" onclick="scrollto('.2')">Page 2</p>
@@ -293,9 +295,9 @@ $(window).scroll(function() {
 		$("html, body").animate({ scrollTop: ypos}, 500);
 	}
 
-    function toggleIndexBar(){
-        jQuery('#pageIndexBar').slideToggle();
-    }
+    $( "#pageIndexToggle" ).click(function() {
+        $('#pageIndexBar').fadeToggle( "slow", "linear" );
+    });
 
 </script>
 <!--	<script type="text/javascript">-->
