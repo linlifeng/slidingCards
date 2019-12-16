@@ -1,19 +1,5 @@
 from flask import Flask, request, render_template
 import json
-from sys import argv
-
-# MOCK_PAGES = {
-#     "page1": {
-#         "pageTitle": "pageTitle",
-#         "pageText": "pageText",
-#         "pagePic": "placeholder for picture url"
-#     },
-#     "page2": {
-#         "pageTitle": "pageTitle",
-#         "pageText": "pageText",
-#         "pagePic": "placeholder for picture url"
-#     }
-# }
 
 MOCK_PAGES = {
     "cover": {
@@ -28,14 +14,14 @@ MOCK_PAGES = {
         "pageLayer": "layer90",
         "pageTitle": "pageTitle",
         "pageText": "pageText",
-        "pagePic": "./static/book1/page3.png"
+        "pagePic": "./static/book1/page1.png"
     },
     "page2": {
         "pageType": "content",
         "pageLayer": "layer80",
         "pageTitle": "pageTitle",
         "pageText": "pageText",
-        "pagePic": "./static/book1/page3.png"
+        "pagePic": "./static/book1/page2.png"
     },
     "page3": {
         "pageType": "content",
@@ -49,35 +35,35 @@ MOCK_PAGES = {
         "pageLayer": "layer60",
         "pageTitle": "pageTitle",
         "pageText": "pageText",
-        "pagePic": "./static/book1/page3.png"
+        "pagePic": "./static/book1/page4.png"
     },
     "page5": {
         "pageType": "content",
         "pageLayer": "layer50",
         "pageTitle": "pageTitle",
         "pageText": "pageText",
-        "pagePic": "./static/book1/page3.png"
+        "pagePic": "./static/book1/page5.png"
     },
     "page6": {
         "pageType": "content",
         "pageLayer": "layer40",
         "pageTitle": "pageTitle",
         "pageText": "pageText",
-        "pagePic": "./static/book1/page3.png"
+        "pagePic": "./static/book1/page6.png"
     },
     "page7": {
         "pageType": "content",
         "pageLayer": "layer30",
         "pageTitle": "pageTitle",
         "pageText": "pageText",
-        "pagePic": "./static/book1/page3.png"
+        "pagePic": "./static/book1/page7.png"
     },
     "page8": {
         "pageType": "content",
         "pageLayer": "layer20",
         "pageTitle": "pageTitle",
         "pageText": "pageText",
-        "pagePic": "./static/book1/page3.png"
+        "pagePic": "./static/book1/page8.png"
     },
     "backCover": {
         "pageType": "backCover",
@@ -109,7 +95,6 @@ def home():
 @app.route("/generate_page", methods = ['POST', 'GET'])
 def generate_bookpage(pageData = MOCK_PAGES):
     data = pageData
-
     pageTitle = data['pageTitle']
     pagePic = data['pagePic']
     pageText = data['pageText']
@@ -125,12 +110,8 @@ def generate_bookpage(pageData = MOCK_PAGES):
     )
 
 @app.route("/generate_book", methods = ['POST', 'GET'])
-def generate_book():
-    mockData = MOCK_BOOK
-    if request.data:
-        data = json.loads(request.data)
-    else:
-        data = mockData
+def generate_book(contentJson = MOCK_BOOK):
+    data = contentJson
     bookTitle = data['Title']
     coverPic  = data['TitlePic']
     pages = []
@@ -147,14 +128,6 @@ def generate_book():
     )
 
 
-# @app.route("/generate_book", methods = ['GET'])
-# def display_generated_book():
-#     try:
-#         page = generate_book()
-#     except:
-#         page = "error loading page"
-#     return page
-
 
 
 @app.route("/book_generator")
@@ -168,11 +141,27 @@ def book_input_page():
 
 @app.route("/book1")
 def book1():
-    file = open("../picturebooks/book1/book1.html", 'r')
-    page = ''
-    for l in file:
-        page += l
+    contentFile = open('/Users/lifenglin/dev/sites/slidingCards/flask/static/book1/book1.json', 'r')
+    contentJson = json.load(contentFile)
+    book = {
+        "Title": "book1",
+        "TitlePic": "placeholder for picture url for title",
+        "Pages": contentJson
+    }
+    return generate_book(contentJson=book)
 
-    return page
+@app.route("/book2")
+def book2():
+    contentFile = open('/Users/lifenglin/dev/sites/slidingCards/flask/static/book2/book2.json', 'r')
+    contentJson = json.load(contentFile)
+    book = {
+        "Title": "book2",
+        "TitlePic": "placeholder for picture url for title",
+        "Pages": contentJson
+    }
+    return generate_book(contentJson=book)
+
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

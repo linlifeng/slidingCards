@@ -1,0 +1,72 @@
+{
+    "cover": {
+        "pageType": "cover",
+        "pageLayer": "layer100",
+        "pageTitle": "book1",
+        "pageText": "Test book1",
+        "pagePic": "./static/book1/page3.png"
+    },
+    "page1": {
+        "pageType": "content",
+        "pageLayer": "layer90",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
+        "pagePic": "./static/book1/page1.png"
+    },
+    "page2": {
+        "pageType": "content",
+        "pageLayer": "layer80",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
+        "pagePic": "./static/book1/page2.png"
+    },
+    "page3": {
+        "pageType": "content",
+        "pageLayer": "layer70",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
+        "pagePic": "./static/book1/page3.png"
+    },
+    "page4": {
+        "pageType": "content",
+        "pageLayer": "layer60",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
+        "pagePic": "./static/book1/page4.png"
+    },
+    "page5": {
+        "pageType": "content",
+        "pageLayer": "layer50",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
+        "pagePic": "./static/book1/page5.png"
+    },
+    "page6": {
+        "pageType": "content",
+        "pageLayer": "layer40",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
+        "pagePic": "./static/book1/page6.png"
+    },
+    "page7": {
+        "pageType": "content",
+        "pageLayer": "layer30",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
+        "pagePic": "./static/book1/page7.png"
+    },
+    "page8": {
+        "pageType": "content",
+        "pageLayer": "layer20",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
+        "pagePic": "./static/book1/page8.png"
+    },
+    "backCover": {
+        "pageType": "backCover",
+        "pageLayer": "layer10",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
+        "pagePic": "./static/book1/page3.png"
+    }
+}

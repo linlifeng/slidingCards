@@ -1,15 +1,6 @@
 <html>
 <head>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$('#nav').localScroll(800);
-		$('#intro').parallax("50%", 0.1);
-		$('#second').parallax("50%", 0.1);
-		$('.bg').parallax("50%", 0.4);
-		$('#third').parallax("50%", 0.3);
-	})
-	</script>
     <link href='https://fonts.googleapis.com/css?family=Swanky+and+Moo+Moo|Meie+Script|Indie+Flower' rel='stylesheet' type='text/css'>
     <style>
     body{
@@ -117,7 +108,7 @@
 
     /*tags for each section*/
     #layer100tag{
-        top:0%;
+        top:5%;
     }
     #layer90tag{
         top:10%;
@@ -144,7 +135,7 @@
         top:80%;
     }
     #layer10tag{
-        top:90%;
+        top:85%;
     }
 
     .cover{
@@ -154,22 +145,34 @@
       -o-background-size: cover;
       background-size: cover;
     }
+    #pageIndexToggle{
+        z-index: 110;
+        position:fixed;
+        top:0px;
+        right:0px;
+        width: 30px;
+        height:30px;
+        background: url("/static/bookmark-512px.png") no-repeat center center;
+        background-size: cover
+    }
     </style>
 </head>
 
 
 <body>
-
-    <p class="bookmark" id="layer100tag" onclick="scrollto('0')">Cover</p>
-    <p class="bookmark" id="layer90tag" onclick="scrollto('.1')">Page 1</p>
-    <p class="bookmark" id="layer80tag" onclick="scrollto('.2')">Page 2</p>
-    <p class="bookmark" id="layer70tag" onclick="scrollto('.3')">Page 3</p>
-    <p class="bookmark" id="layer60tag" onclick="scrollto('.4')">Page 4</p>
-    <p class="bookmark" id="layer50tag" onclick="scrollto('.5')">Page 5</p>
-    <p class="bookmark" id="layer40tag" onclick="scrollto('.6')">Page 6</p>
-    <p class="bookmark" id="layer30tag" onclick="scrollto('.7')">Page 7</p>
-    <p class="bookmark" id="layer20tag" onclick="scrollto('.8')">Page 8</p>
-    <p class="bookmark" id="layer10tag" onclick="scrollto('.9')">About this book</p>
+    <div id = "pageIndexToggle" onclick="toggleIndexBar()"></div>
+    <div id="pageIndexBar">
+        <p class="bookmark" id="layer100tag" onclick="scrollto('0')">Cover</p>
+        <p class="bookmark" id="layer90tag" onclick="scrollto('.1')">Page 1</p>
+        <p class="bookmark" id="layer80tag" onclick="scrollto('.2')">Page 2</p>
+        <p class="bookmark" id="layer70tag" onclick="scrollto('.3')">Page 3</p>
+        <p class="bookmark" id="layer60tag" onclick="scrollto('.4')">Page 4</p>
+        <p class="bookmark" id="layer50tag" onclick="scrollto('.5')">Page 5</p>
+        <p class="bookmark" id="layer40tag" onclick="scrollto('.6')">Page 6</p>
+        <p class="bookmark" id="layer30tag" onclick="scrollto('.7')">Page 7</p>
+        <p class="bookmark" id="layer20tag" onclick="scrollto('.8')">Page 8</p>
+        <p class="bookmark" id="layer10tag" onclick="scrollto('.9')">About this book</p>
+    </div>
 
     {% for page in pages %}
     {{ page|safe }}
@@ -290,6 +293,21 @@ $(window).scroll(function() {
 		$("html, body").animate({ scrollTop: ypos}, 500);
 	}
 
+    function toggleIndexBar(){
+        jQuery('#pageIndexBar').slideToggle();
+    }
+
 </script>
+<!--	<script type="text/javascript">-->
+<!--	$(document).ready(function(){-->
+<!--		$('#nav').localScroll(800);-->
+<!--		$('#intro').parallax("50%", 0.1);-->
+<!--		$('#second').parallax("50%", 0.1);-->
+<!--		$('.bg').parallax("50%", 0.4);-->
+<!--		$('#third').parallax("50%", 0.3);-->
+<!--		$('#pageIndexBar').hide();-->
+<!--		$('.bookmark').hide();-->
+<!--	})-->
+<!--	</script>-->
 </html>
 -->
