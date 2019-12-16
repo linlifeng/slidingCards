@@ -11,8 +11,8 @@
         "pageBackground": "https://www.goldderby.com/wp-content/uploads/2019/11/frozen-ii.jpg?w=620&h=360&crop=1",
         "pageType": "content",
         "pageLayer": "layer90",
-        "pageTitle": "pageTitle",
-        "pageText": "pageText",
+        "pageTitle": "",
+        "pageText": "",
         "pagePic": "https://images-na.ssl-images-amazon.com/images/I/81sxpgZO6BL.jpg"
     },
     "page2": {
@@ -20,38 +20,35 @@
         "pageType": "content",
         "pageLayer": "layer80",
         "pageTitle": "pageTitle",
-        "pageText": "pageText",
-        "pagePic": "https://www.goldderby.com/wp-content/uploads/2019/11/frozen-ii.jpg?w=620&h=360&crop=1"
+        "pageText": "pageText"
     },
     "page3": {
         "pageBackground": "http://media.virbcdn.com/cdn_images/resize_1024x1365/52/649fb29f9c579e7a-Frozen_group.jpg",
         "pageType": "content",
         "pageLayer": "layer70",
         "pageTitle": "pageTitle",
-        "pageText": "pageText",
-        "pagePic": "https://i.ytimg.com/vi/B6493AOTo5U/maxresdefault.jpg"
+        "pageText": "pageText"
     },
     "page4": {
-        "pageBackground": "http://media.virbcdn.com/cdn_images/resize_1024x1365/52/649fb29f9c579e7a-Frozen_group.jpg",
+        "pageBackground": "https://cdn.vox-cdn.com/thumbor/DeGATZaylnoFNTpCWR7nEr_irUk=/0x0:1280x720/1200x800/filters:focal(538x258:742x462)/cdn.vox-cdn.com/uploads/chorus_image/image/57779919/maxresdefault.0.jpg",
         "pageType": "content",
         "pageLayer": "layer60",
         "pageTitle": "pageTitle",
-        "pageText": "pageText",
-        "pagePic": "./static/book1/page4.png"
+        "pageText": "pageText"
     },
     "page5": {
+        "pageBackground": "https://imgs.classicfm.com/images/56376?crop=16_9&width=660&relax=1&signature=oTEd-cOEpJVNfNLYZZHhWGzbPnQ=",
         "pageType": "content",
         "pageLayer": "layer50",
         "pageTitle": "pageTitle",
-        "pageText": "pageText",
-        "pagePic": "./static/book1/page5.png"
+        "pageText": "pageText"
     },
     "page6": {
+        "pageBackground": "http://www.feministfiction.com/wp-content/uploads/2014/02/Frozen-01.jpg",
         "pageType": "content",
         "pageLayer": "layer40",
         "pageTitle": "pageTitle",
-        "pageText": "pageText",
-        "pagePic": "./static/book1/page6.png"
+        "pageText": "pageText"
     },
     "page7": {
         "pageType": "content",

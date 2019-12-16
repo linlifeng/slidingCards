@@ -96,7 +96,10 @@ def home():
 def generate_bookpage(pageData = MOCK_PAGES):
     data = pageData
     pageTitle = data['pageTitle']
-    pagePic = data['pagePic']
+    if 'pagePic' in data:
+        pagePic = data['pagePic']
+    else:
+        pagePic = None
     pageText = data['pageText']
     pageLayer = data['pageLayer']
     pageType  = data['pageType']

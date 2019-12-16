@@ -2,8 +2,8 @@
     "cover": {
         "pageType": "cover",
         "pageLayer": "layer100",
-        "pageTitle": "book1",
-        "pageText": "Test book1",
+        "pageTitle": "pageTitle",
+        "pageText": "pageText",
         "pagePic": "./static/book1/page3.png"
     },
     "page1": {
