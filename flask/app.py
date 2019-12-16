@@ -100,13 +100,18 @@ def generate_bookpage(pageData = MOCK_PAGES):
     pageText = data['pageText']
     pageLayer = data['pageLayer']
     pageType  = data['pageType']
+    if 'pageBackground' in data:
+        pageBackground = data['pageBackground']
+    else:
+        pageBackground = None
     return render_template(
         "page.html",
         pageTitle = pageTitle,
         pagePic = pagePic,
         pageText = pageText,
         pageLayer = pageLayer,
-        pageType = pageType
+        pageType = pageType,
+        pageBackground = pageBackground
     )
 
 @app.route("/generate_book", methods = ['POST', 'GET'])

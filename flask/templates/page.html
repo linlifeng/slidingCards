@@ -1,3 +1,13 @@
+<style>
+	#{{ pageLayer }} {
+	  background: url("{{ pageBackground }}") no-repeat center center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+	}
+</style>
+
 {% if pageType == 'cover' %}
 <div class="whitePane page cover" id = {{ pageLayer }}>
 {% elif pageType == 'backCover' %}
