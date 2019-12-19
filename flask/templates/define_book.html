@@ -1,0 +1,29 @@
+<form action="/test" method="post" name="bookInputForm">
+    <label for="bookTitle">book Title</label>  <input name="bookTitle" type="text" />
+    {{ page1_input|safe }}
+    {{ page2_input|safe }}
+    {{ page3_input|safe }}
+    {{ page4_input|safe }}
+    {{ page5_input|safe }}
+    {{ page6_input|safe }}
+    {{ page7_input|safe }}
+    {{ page8_input|safe }}
+    {{ page9_input|safe }}
+    {{ page10_input|safe }}
+    <input value="Get my book!" type="submit" onclick="submitform()">
+</form>
+
+<script type="text/javascript">
+    function submitform(){
+        alert("Sending Json");
+
+        var formData = JSON.stringify($("#bookInputForm").serializeArray());
+
+        var xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action, true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        var j = {
+            "first_name":"binchen",
+            "last_name":"heris",
+        };
+        xhr.send(JSON.stringify(j));
