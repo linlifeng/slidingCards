@@ -14,7 +14,7 @@
             "pageType": "dualPage",
             "pageLayer": "layer90",
             "pageTitle": "",
-            "pageText": "testpage1",
+            "pageText": "",
             "pagePic": "https://images-na.ssl-images-amazon.com/images/I/81sxpgZO6BL.jpg"
         },
         "page2": {
@@ -53,14 +53,14 @@
             "pageText": "pageText"
         },
         "page7": {
-            "pageType": "content",
+            "pageType": "dualPage",
             "pageLayer": "layer30",
             "pageTitle": "pageTitle",
             "pageText": "pageText",
             "pagePic": "./static/book1/page7.png"
         },
         "page8": {
-            "pageType": "content",
+            "pageType": "dualPage",
             "pageLayer": "layer20",
             "pageTitle": "pageTitle",
             "pageText": "pageText",

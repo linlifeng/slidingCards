@@ -1,5 +1,9 @@
 from flask import Flask, request, render_template
-import json, os
+import json
+import os
+
+# Global variables
+BOOK_JSON_DIR = 'static/books/'
 
 MOCK_PAGES = {
     "cover": {
@@ -80,20 +84,11 @@ MOCK_BOOK = {
     "Pages": MOCK_PAGES
 }
 
+# end global variables
+
 app = Flask(__name__)
 
 
-@app.route("/")
-def home():
-    file = open("../picturebooks/index.html", 'r')
-    page = ''
-    for l in file:
-        page += l
-
-    return page
-
-
-# @app.route("/generate_page", methods=['POST', 'GET'])
 def generate_bookpage(page_data=MOCK_PAGES):
     data = page_data
     page_title = data['pageTitle']
@@ -122,8 +117,6 @@ def generate_bookpage(page_data=MOCK_PAGES):
 @app.route("/generate_book", methods=['POST'])
 def generate_book(content_json=MOCK_BOOK):
     data = json.loads(content_json)
-    #if request.form:
-    #    data = request.form
     book_title = data['Title']
     pages = []
     for page_name in data['Pages']:
@@ -138,14 +131,16 @@ def generate_book(content_json=MOCK_BOOK):
     )
 
 
-@app.route("/book_generator")
-def book_input_page():
-    file = open("../picturebooks/book_input.html", 'r')
-    page = ''
-    for l in file:
-        page += l
-
-    return page
+@app.route("/show_book", methods=['GET'])
+def show_book(book_name="default"):
+    if request.args:
+        book_name = request.args['book_name']
+    book_path = BOOK_JSON_DIR + book_name + '.json'
+    json_path = os.path.join(app.root_path, book_path)
+    content_file = open(json_path, 'r')
+    content_json = json.load(content_file)
+    book = json.dumps(content_json)
+    return generate_book(content_json=book)
 
 
 @app.route("/book1")
@@ -161,19 +156,6 @@ def book1():
     return generate_book(content_json=book)
 
 
-@app.route("/book2")
-def book2():
-    json_path = os.path.join(app.root_path, 'static/book2/book2.json')
-    content_file = open(json_path, 'r')
-    content_json = json.load(content_file)
-    book = {
-        "Title": "book2",
-        "TitlePic": "placeholder for picture url for title",
-        "Pages": content_json
-    }
-    return generate_book(content_json=book)
-
-
 @app.route("/book3")
 def book3():
     json_path = os.path.join(app.root_path, 'static/book3/book3.json')
@@ -182,12 +164,13 @@ def book3():
     book = json.dumps(content_json)
     return generate_book(content_json=book)
 
+
 @app.route("/bookInput")
-def inputform():
+def input_form():
     return render_template(
         "define_book.html",
         page1_input=render_template("define_single_page.html", page_id="page1"),
-        page2_input = render_template("define_single_page.html", page_id="page2"),
+        page2_input=render_template("define_single_page.html", page_id="page2"),
         page3_input=render_template("define_single_page.html", page_id="page3"),
         page4_input=render_template("define_single_page.html", page_id="page4"),
         page5_input=render_template("define_single_page.html", page_id="page5"),
@@ -198,12 +181,13 @@ def inputform():
         page10_input=render_template("define_single_page.html", page_id="page10")
     )
 
-@app.route("/test", methods=['POST'])
-def test():
-    #print("request")
-    #print(request.form)
+
+@app.route("/book_generator", methods=['POST'])
+def generate_book_from_webform():
     data = request.form.to_dict(flat=False)
-    #print(data)
+
+    print(data)
+
 
     page1_title = data['page1pageTitle'][0]
     page1_text = data['page1pageText'][0]
@@ -213,41 +197,49 @@ def test():
     page2_title = data['page2pageTitle'][0]
     page2_text = data['page2pageText'][0]
     page2_url = data['page2imageURL'][0]
-
+    page2_background = data['page2backgroundURL'][0]
 
     page3_title = data['page3pageTitle'][0]
     page3_text = data['page3pageText'][0]
     page3_url = data['page3imageURL'][0]
+    page3_background = data['page3backgroundURL'][0]
 
     page4_title = data['page4pageTitle'][0]
     page4_text = data['page4pageText'][0]
     page4_url = data['page4imageURL'][0]
+    page4_background = data['page4backgroundURL'][0]
 
     page5_title = data['page5pageTitle'][0]
     page5_text = data['page5pageText'][0]
     page5_url = data['page5imageURL'][0]
+    page5_background = data['page5backgroundURL'][0]
 
     page6_title = data['page6pageTitle'][0]
     page6_text = data['page6pageText'][0]
     page6_url = data['page6imageURL'][0]
+    page6_background = data['page6backgroundURL'][0]
 
     page7_title = data['page7pageTitle'][0]
     page7_text = data['page7pageText'][0]
     page7_url = data['page7imageURL'][0]
+    page7_background = data['page7backgroundURL'][0]
 
     page8_title = data['page8pageTitle'][0]
     page8_text = data['page8pageText'][0]
     page8_url = data['page8imageURL'][0]
+    page8_background = data['page8backgroundURL'][0]
 
     page9_title = data['page9pageTitle'][0]
     page9_text = data['page9pageText'][0]
     page9_url = data['page9imageURL'][0]
+    page9_background = data['page9backgroundURL'][0]
 
     page10_title = data['page10pageTitle'][0]
     page10_text = data['page10pageText'][0]
     page10_url = data['page10imageURL'][0]
+    page10_background = data['page10backgroundURL'][0]
 
-    cover = {}
+    cover = dict()
     cover["pageBackground"] = page1_background
     cover["pageType"] = "cover"
     cover["pageLayer"] = "layer100"
@@ -255,69 +247,77 @@ def test():
     cover["pageText"] = page1_text
     cover["pagePic"] = page1_url
 
-    page2 = {}
+    page2 = dict()
+    page2["pageBackground"] = page2_background
     page2["pageType"] = "content"
     page2["pageLayer"] = "layer90"
     page2["pageTitle"] = page2_title
     page2["pageText"] = page2_text
     page2["pagePic"] = page2_url
 
-    page3 = {}
+    page3 = dict()
+    page3["pageBackground"] = page3_background
     page3["pageType"] = "content"
     page3["pageLayer"] = "layer80"
     page3["pageTitle"] = page3_title
     page3["pageText"] = page3_text
     page3["pagePic"] = page3_url
 
-    page4 = {}
+    page4 = dict()
+    page4["pageBackground"] = page4_background
     page4["pageType"] = "content"
     page4["pageLayer"] = "layer70"
     page4["pageTitle"] = page4_title
     page4["pageText"] = page4_text
     page4["pagePic"] = page4_url
 
-    page5 = {}
+    page5 = dict()
+    page5["pageBackground"] = page5_background
     page5["pageType"] = "content"
     page5["pageLayer"] = "layer60"
     page5["pageTitle"] = page5_title
     page5["pageText"] = page5_text
     page5["pagePic"] = page5_url
 
-    page6= {}
+    page6 = dict()
+    page6["pageBackground"] = page6_background
     page6["pageType"] = "content"
     page6["pageLayer"] = "layer50"
     page6["pageTitle"] = page6_title
     page6["pageText"] = page6_text
     page6["pagePic"] = page6_url
 
-    page7= {}
+    page7 = dict()
+    page7["pageBackground"] = page7_background
     page7["pageType"] = "content"
     page7["pageLayer"] = "layer40"
     page7["pageTitle"] = page7_title
     page7["pageText"] = page7_text
     page7["pagePic"] = page7_url
 
-    page8= {}
+    page8 = dict()
+    page8["pageBackground"] = page8_background
     page8["pageType"] = "content"
     page8["pageLayer"] = "layer30"
     page8["pageTitle"] = page8_title
     page8["pageText"] = page8_text
     page8["pagePic"] = page8_url
 
-    page9= {}
+    page9 = dict()
+    page9["pageBackground"] = page9_background
     page9["pageType"] = "content"
     page9["pageLayer"] = "layer20"
     page9["pageTitle"] = page9_title
     page9["pageText"] = page9_text
     page9["pagePic"] = page9_url
 
-    page10 = {}
+    page10 = dict()
+    page10["pageBackground"] = page10_background
     page10["pageType"] = "content"
     page10["pageLayer"] = "layer10"
     page10["pageTitle"] = page10_title
     page10["pageText"] = page10_text
     page10["pagePic"] = page10_url
-
 
     pages = {
         "page1": cover,
@@ -332,28 +332,30 @@ def test():
         "backcover": page10
      }
 
-    book = {}
+    book = dict()
     book["Pages"] = pages
     book["Title"] = data['bookTitle'][0]
 
     book_json = json.dumps(book)
 
-    print(type(book_json))
+    books_path = os.path.join(app.root_path, BOOK_JSON_DIR)
+    json_path = books_path + book["Title"] + '.json'
+    tmp_json_path = books_path + 'tmp.json'
+    with open(tmp_json_path, "w") as f:
+        f.write(book_json)
+
     return generate_book(content_json=book_json)
 
 
-    # pages = []
-    # for page_name in data['Pages']:
-    #     page_html = generate_bookpage(page_data=data['Pages'][page_name])
-    #     pages.append(page_html)
-    # page_cnt = len(pages)
-    # return render_template(
-    #     "slidingPages.html",
-    #     bookTitle=book_title,
-    #     pageCnt=page_cnt,
-    #     pages=pages
-    # )
+def save_book(book_name):
+    # TODO this is not called anywhere. Just a placeholder for future dev.
+    books_path = os.path.join(app.root_path, BOOK_JSON_DIR)
+    json_path = books_path + book_name + '.json'
+    tmp_json_path = books_path + 'tmp.json'
 
+    if os.path.exists(json_path):
+        raise Exception("File Exist Error")
+    os.system('mv ' + tmp_json_path + ' ' + json_path)
 
 
 if __name__ == "__main__":

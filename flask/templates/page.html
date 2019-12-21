@@ -1,15 +1,3 @@
-{% if not pageBackground == None %}
-<style>
-	#{{ pageLayer }} {
-	  background: url("{{ pageBackground }}") no-repeat center center;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-	}
-</style>
-{% endif %}
-
 {% if pageType == "dualPage" %}
 <style>
 	#{{ pageLayer }} .contentImage{
@@ -24,6 +12,19 @@
 </style>
 {% endif %}
 
+{% if not pageBackground == None and not pageBackground == '' %}
+<style>
+	#{{ pageLayer }} {
+	  background: url("{{ pageBackground }}") no-repeat center center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+	}
+</style>
+{% endif %}
+
+
 {% if pageType == 'cover' %}
 <div class="whitePane page cover" id = {{ pageLayer }}>
 {% elif pageType == 'backCover' %}
@@ -37,7 +38,7 @@
 			<h2>{{ pageText }}</h2>
 		</div>
 		<div class="contentImage">
-			{% if not pagePic == None and not pageType == "dualPage" %}
+			{% if not pagePic == None and not pageType == "dualPage" and not pagePic == '' %}
 		    <img  src= {{ pagePic }} />
 			{% endif %}
 		</div>
