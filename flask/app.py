@@ -198,6 +198,7 @@ def generate_book_from_webform():
     page2_text = data['page2pageText'][0]
     page2_url = data['page2imageURL'][0]
     page2_background = data['page2backgroundURL'][0]
+    page2_type = data['page2pageType'][0]
 
     page3_title = data['page3pageTitle'][0]
     page3_text = data['page3pageText'][0]
@@ -249,7 +250,7 @@ def generate_book_from_webform():
 
     page2 = dict()
     page2["pageBackground"] = page2_background
-    page2["pageType"] = "content"
+    page2["pageType"] = page2_type
     page2["pageLayer"] = "layer90"
     page2["pageTitle"] = page2_title
     page2["pageText"] = page2_text
