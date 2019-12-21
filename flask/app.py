@@ -193,6 +193,7 @@ def generate_book_from_webform():
     page1_text = data['page1pageText'][0]
     page1_url = data['page1imageURL'][0]
     page1_background = data['page1backgroundURL'][0]
+    page1_type = data['page1pageType'][0]
 
     page2_title = data['page2pageTitle'][0]
     page2_text = data['page2pageText'][0]
@@ -204,45 +205,53 @@ def generate_book_from_webform():
     page3_text = data['page3pageText'][0]
     page3_url = data['page3imageURL'][0]
     page3_background = data['page3backgroundURL'][0]
+    page3_type = data['page3pageType'][0]
 
     page4_title = data['page4pageTitle'][0]
     page4_text = data['page4pageText'][0]
     page4_url = data['page4imageURL'][0]
     page4_background = data['page4backgroundURL'][0]
+    page4_type = data['page4pageType'][0]
 
     page5_title = data['page5pageTitle'][0]
     page5_text = data['page5pageText'][0]
     page5_url = data['page5imageURL'][0]
     page5_background = data['page5backgroundURL'][0]
+    page5_type = data['page5pageType'][0]
 
     page6_title = data['page6pageTitle'][0]
     page6_text = data['page6pageText'][0]
     page6_url = data['page6imageURL'][0]
     page6_background = data['page6backgroundURL'][0]
+    page6_type = data['page6pageType'][0]
 
     page7_title = data['page7pageTitle'][0]
     page7_text = data['page7pageText'][0]
     page7_url = data['page7imageURL'][0]
     page7_background = data['page7backgroundURL'][0]
+    page7_type = data['page7pageType'][0]
 
     page8_title = data['page8pageTitle'][0]
     page8_text = data['page8pageText'][0]
     page8_url = data['page8imageURL'][0]
     page8_background = data['page8backgroundURL'][0]
+    page8_type = data['page8pageType'][0]
 
     page9_title = data['page9pageTitle'][0]
     page9_text = data['page9pageText'][0]
     page9_url = data['page9imageURL'][0]
     page9_background = data['page9backgroundURL'][0]
+    page9_type = data['page9pageType'][0]
 
     page10_title = data['page10pageTitle'][0]
     page10_text = data['page10pageText'][0]
     page10_url = data['page10imageURL'][0]
     page10_background = data['page10backgroundURL'][0]
+    page10_type = data['page10pageType'][0]
 
     cover = dict()
     cover["pageBackground"] = page1_background
-    cover["pageType"] = "cover"
+    cover["pageType"] = page1_type
     cover["pageLayer"] = "layer100"
     cover["pageTitle"] = page1_title
     cover["pageText"] = page1_text
@@ -258,7 +267,7 @@ def generate_book_from_webform():
 
     page3 = dict()
     page3["pageBackground"] = page3_background
-    page3["pageType"] = "content"
+    page3["pageType"] = page3_type
     page3["pageLayer"] = "layer80"
     page3["pageTitle"] = page3_title
     page3["pageText"] = page3_text
@@ -266,7 +275,7 @@ def generate_book_from_webform():
 
     page4 = dict()
     page4["pageBackground"] = page4_background
-    page4["pageType"] = "content"
+    page4["pageType"] = page4_type
     page4["pageLayer"] = "layer70"
     page4["pageTitle"] = page4_title
     page4["pageText"] = page4_text
@@ -274,7 +283,7 @@ def generate_book_from_webform():
 
     page5 = dict()
     page5["pageBackground"] = page5_background
-    page5["pageType"] = "content"
+    page5["pageType"] = page5_type
     page5["pageLayer"] = "layer60"
     page5["pageTitle"] = page5_title
     page5["pageText"] = page5_text
@@ -282,7 +291,7 @@ def generate_book_from_webform():
 
     page6 = dict()
     page6["pageBackground"] = page6_background
-    page6["pageType"] = "content"
+    page6["pageType"] = page6_type
     page6["pageLayer"] = "layer50"
     page6["pageTitle"] = page6_title
     page6["pageText"] = page6_text
@@ -290,7 +299,7 @@ def generate_book_from_webform():
 
     page7 = dict()
     page7["pageBackground"] = page7_background
-    page7["pageType"] = "content"
+    page7["pageType"] = page7_type
     page7["pageLayer"] = "layer40"
     page7["pageTitle"] = page7_title
     page7["pageText"] = page7_text
@@ -298,7 +307,7 @@ def generate_book_from_webform():
 
     page8 = dict()
     page8["pageBackground"] = page8_background
-    page8["pageType"] = "content"
+    page8["pageType"] = page8_type
     page8["pageLayer"] = "layer30"
     page8["pageTitle"] = page8_title
     page8["pageText"] = page8_text
@@ -306,7 +315,7 @@ def generate_book_from_webform():
 
     page9 = dict()
     page9["pageBackground"] = page9_background
-    page9["pageType"] = "content"
+    page9["pageType"] = page9_type
     page9["pageLayer"] = "layer20"
     page9["pageTitle"] = page9_title
     page9["pageText"] = page9_text
@@ -314,7 +323,7 @@ def generate_book_from_webform():
 
     page10 = dict()
     page10["pageBackground"] = page10_background
-    page10["pageType"] = "content"
+    page10["pageType"] = page10_type
     page10["pageLayer"] = "layer10"
     page10["pageTitle"] = page10_title
     page10["pageText"] = page10_text
