@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 import json
 import os
+import glob
 
 # Global variables
 BOOK_JSON_DIR = 'static/books/'
@@ -88,6 +89,15 @@ MOCK_BOOK = {
 
 app = Flask(__name__)
 
+@app.route("/books")
+def list_books():
+    book_jsons = glob.glob(os.path.join(app.root_path, BOOK_JSON_DIR) + '*.json')
+    print(book_jsons)
+    page = ''
+    for book in book_jsons:
+        book_name = '.'.join(os.path.basename(book).split('.')[:-1])
+        page += render_template("book_thumbnail.html", book_name=book_name)
+    return page
 
 def generate_bookpage(page_data=MOCK_PAGES):
     data = page_data
