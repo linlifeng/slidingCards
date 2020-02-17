@@ -89,15 +89,21 @@ MOCK_BOOK = {
 
 app = Flask(__name__)
 
+
 @app.route("/books")
 def list_books():
     book_jsons = glob.glob(os.path.join(app.root_path, BOOK_JSON_DIR) + '*.json')
-    print(book_jsons)
+    book_jsons.sort(key=os.path.getmtime, reverse=True)
+
+    # print(book_jsons)
     page = ''
     for book in book_jsons:
         book_name = '.'.join(os.path.basename(book).split('.')[:-1])
+        if book_name == 'tmp':
+            continue
         page += render_template("book_thumbnail.html", book_name=book_name)
     return page
+
 
 def generate_bookpage(page_data=MOCK_PAGES):
     data = page_data
@@ -157,6 +163,7 @@ def preview_book(content_json=MOCK_BOOK):
     #save_button = "<div class=bookmark><button>save</button></div>"
     save_button = '<div id=save_button><a href=\"/save_book?book_name=%s\"><button>save</button></a></div>'%book_title
     return save_button + rendered_book
+
 
 @app.route("/show_book", methods=['GET'])
 def show_book(book_name="default"):
@@ -384,9 +391,9 @@ def generate_book_from_webform():
 
     return preview_book(content_json=book_json)
 
+
 @app.route("/save_book")
 def save_book(book_name='tmp'):
-    # TODO this is not called anywhere. Just a placeholder for future dev.
     if request.args:
         book_name = request.args['book_name']
     books_path = os.path.join(app.root_path, BOOK_JSON_DIR)
@@ -397,13 +404,28 @@ def save_book(book_name='tmp'):
         alert = '<script type="text/javascript">' + \
                 'alert("The book name: "%s" already exists.")'%book_name + \
                 '</script>'
-        #raise Exception("File Exist Error")
+        # raise Exception("File Exist Error")
         return alert + "The book name already exists."
     os.system('mv ' + tmp_json_path + ' ' + json_path)
     alert = '<script type="text/javascript">' + \
             'alert("Saving the book to %s")'%book_name + \
             '</script>'
-    return alert + show_book(book_name=book_name)
+    return alert + list_books()
+
+
+@app.route("/delete_book")
+def delete_book(book_name='tmp'):
+    # TODO this is not called anywhere. Just a placeholder for future dev.
+    if request.args:
+        book_name = request.args['book_name']
+    books_path = os.path.join(app.root_path, BOOK_JSON_DIR)
+    json_path = books_path + book_name + '.json'
+
+    os.system('rm ' + json_path)
+    alert = '<script type="text/javascript">' + \
+            'confirm("Book %s has been deleted")'%book_name + \
+            '</script>'
+    return alert + list_books()
 
 
 if __name__ == "__main__":
