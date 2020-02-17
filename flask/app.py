@@ -122,14 +122,31 @@ def generate_book(content_json=MOCK_BOOK):
     for page_name in data['Pages']:
         page_html = generate_bookpage(page_data=data['Pages'][page_name])
         pages.append(page_html)
-    page_cnt = len(pages)
     return render_template(
         "slidingPages.html",
         bookTitle=book_title,
-        pageCnt=page_cnt,
         pages=pages
     )
 
+
+@app.route("/preview_book", methods=['GET'])
+def preview_book(content_json=MOCK_BOOK):
+    data = json.loads(content_json)
+    book_title = data['Title']
+    pages = []
+    for page_name in data['Pages']:
+        page_html = generate_bookpage(page_data=data['Pages'][page_name])
+        pages.append(page_html)
+
+    rendered_book = render_template(
+        "slidingPages.html",
+        bookTitle=book_title,
+        pages=pages
+    )
+
+    #save_button = "<div class=bookmark><button>save</button></div>"
+    save_button = '<div id=save_button><a href=\"/save_book?book_name=%s\"><button>save</button></a></div>'%book_title
+    return save_button + rendered_book
 
 @app.route("/show_book", methods=['GET'])
 def show_book(book_name="default"):
@@ -186,8 +203,9 @@ def input_form():
 def generate_book_from_webform():
     data = request.form.to_dict(flat=False)
 
-    print(data)
+    #print(data)
 
+    book_title = data['bookTitle'][0]
 
     page1_title = data['page1pageTitle'][0]
     page1_text = data['page1pageText'][0]
@@ -344,7 +362,7 @@ def generate_book_from_webform():
 
     book = dict()
     book["Pages"] = pages
-    book["Title"] = data['bookTitle'][0]
+    book["Title"] = book_title
 
     book_json = json.dumps(book)
 
@@ -354,18 +372,28 @@ def generate_book_from_webform():
     with open(tmp_json_path, "w") as f:
         f.write(book_json)
 
-    return generate_book(content_json=book_json)
+    return preview_book(content_json=book_json)
 
-
-def save_book(book_name):
+@app.route("/save_book")
+def save_book(book_name='tmp'):
     # TODO this is not called anywhere. Just a placeholder for future dev.
+    if request.args:
+        book_name = request.args['book_name']
     books_path = os.path.join(app.root_path, BOOK_JSON_DIR)
     json_path = books_path + book_name + '.json'
     tmp_json_path = books_path + 'tmp.json'
 
     if os.path.exists(json_path):
-        raise Exception("File Exist Error")
+        alert = '<script type="text/javascript">' + \
+                'alert("The book name: "%s" already exists.")'%book_name + \
+                '</script>'
+        #raise Exception("File Exist Error")
+        return alert + "The book name already exists."
     os.system('mv ' + tmp_json_path + ' ' + json_path)
+    alert = '<script type="text/javascript">' + \
+            'alert("Saving the book to %s")'%book_name + \
+            '</script>'
+    return alert + show_book(book_name=book_name)
 
 
 if __name__ == "__main__":
