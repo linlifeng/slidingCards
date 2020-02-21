@@ -9,10 +9,18 @@
 
 
 <br/>
-<label for="pageTitle">{{ page_id }} Title</label>                <input name="{{ page_id }}pageTitle" type="text" />
-<label for="pageText">{{ page_id }} Text</label>                  <input name="{{ page_id }}pageText" type="text" />
-<label for="imageURL">{{ page_id }} Image URL</label>             <input name="{{ page_id }}imageURL" type="text" />
-<label for="backgroundURL">{{ page_id }} Background URL</label>   <input name="{{ page_id }}backgroundURL" type="text" />
+<label for="pageTitle">{{ page_id }} Title</label>
+<input name="{{ page_id }}pageTitle" type="text" value="{{ page_title }}"/>
+
+<label for="pageText">{{ page_id }} Text</label>
+<input name="{{ page_id }}pageText" type="text" value="{{ page_text }}"/>
+
+<label for="imageURL">{{ page_id }} Image URL</label>
+<input name="{{ page_id }}imageURL" type="text" value="{{ page_image_url }}"/>
+
+<label for="backgroundURL">{{ page_id }} Background URL</label>
+<input name="{{ page_id }}backgroundURL" type="text" value="{{ page_background_url }}"/>
+
 <label for="imageFill">{{ page_id }} Page Type</label>
 <select name="{{ page_id }}pageType">
     <option value="dualPage">Image Fill</option>

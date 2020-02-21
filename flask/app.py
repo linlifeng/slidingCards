@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 import json
 import os
 import glob
@@ -101,8 +101,12 @@ def list_books():
         book_name = '.'.join(os.path.basename(book).split('.')[:-1])
         if book_name == 'tmp':
             continue
-        page += render_template("book_thumbnail.html", book_name=book_name)
-    return page
+        book_content = json.load(open(book, 'r'))
+        book_cover = book_content["Pages"]["page1"]["pageBackground"]
+        page += render_template("book_thumbnail.html", book_name=book_name, book_cover=book_cover)
+    add_button = '<div id=save_button><a href=\"/bookInput\"><button>create a new book</button></a></div>'
+
+    return page + add_button
 
 
 def generate_bookpage(page_data=MOCK_PAGES):
@@ -165,10 +169,10 @@ def preview_book(content_json=MOCK_BOOK):
     return save_button + rendered_book
 
 
-@app.route("/show_book", methods=['GET'])
+@app.route("/show_book/<book_name>", methods=['GET'])
 def show_book(book_name="default"):
-    if request.args:
-        book_name = request.args['book_name']
+    # if request.args:
+    #     book_name = request.args['book_name']
     book_path = BOOK_JSON_DIR + book_name + '.json'
     json_path = os.path.join(app.root_path, book_path)
     content_file = open(json_path, 'r')
@@ -219,8 +223,6 @@ def input_form():
 @app.route("/book_generator", methods=['POST'])
 def generate_book_from_webform():
     data = request.form.to_dict(flat=False)
-
-    #print(data)
 
     book_title = data['bookTitle'][0]
 
@@ -374,7 +376,7 @@ def generate_book_from_webform():
         "page7": page7,
         "page8": page8,
         "page9": page9,
-        "backcover": page10
+        "page10": page10
      }
 
     book = dict()
@@ -410,12 +412,12 @@ def save_book(book_name='tmp'):
     alert = '<script type="text/javascript">' + \
             'alert("Saving the book to %s")'%book_name + \
             '</script>'
-    return alert + list_books()
+    return redirect(url_for('list_books'))
+    # return alert + list_books()
 
 
 @app.route("/delete_book")
 def delete_book(book_name='tmp'):
-    # TODO this is not called anywhere. Just a placeholder for future dev.
     if request.args:
         book_name = request.args['book_name']
     books_path = os.path.join(app.root_path, BOOK_JSON_DIR)
@@ -425,8 +427,44 @@ def delete_book(book_name='tmp'):
     alert = '<script type="text/javascript">' + \
             'confirm("Book %s has been deleted")'%book_name + \
             '</script>'
-    return alert + list_books()
 
+    return redirect(url_for('list_books'))
+
+
+@app.route("/edit_book")
+def edit_book(book_name='tmp'):
+    # todo this is not implemented yet
+    if request.args:
+        book_name = request.args['book_name']
+    books_path = os.path.join(app.root_path, BOOK_JSON_DIR)
+    json_path = books_path + book_name + '.json'
+    book = json.load(open(json_path, 'r'))
+    pages = book['Pages']
+    book_title = book['Title']
+
+    page_inputs = {}
+    for page in pages:
+        page_inputs[page] = render_template("define_single_page.html",
+                                            page_id=page,
+                                            page_title=pages[page]['pageTitle'],
+                                            page_text=pages[page]['pageText'],
+                                            page_image_url=pages[page]['pagePic'],
+                                            page_background_url=pages[page]['pageBackground'])
+
+    return render_template(
+        "define_book.html",
+        book_title=book_title,
+        page1_input=page_inputs['page1'],
+        page2_input=page_inputs['page2'],
+        page3_input=page_inputs['page3'],
+        page4_input=page_inputs['page4'],
+        page5_input=page_inputs['page5'],
+        page6_input=page_inputs['page6'],
+        page7_input=page_inputs['page7'],
+        page8_input=page_inputs['page8'],
+        page9_input=page_inputs['page9'],
+        page10_input=page_inputs['page10']
+    )
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')

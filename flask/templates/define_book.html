@@ -1,5 +1,5 @@
 <form action="/book_generator" method="post" name="bookInputForm">
-    <label for="bookTitle">book Title</label>  <input name="bookTitle" type="text" />
+    <label for="bookTitle">book Title</label>  <input name="bookTitle" type="text" value="{{ book_title }}"/>
     {{ page1_input|safe }}
     {{ page2_input|safe }}
     {{ page3_input|safe }}

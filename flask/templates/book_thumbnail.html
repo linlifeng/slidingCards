@@ -1,4 +1,31 @@
-<p>
-    <a href="/show_book?book_name={{ book_name }}">{{ book_name }}</a>
-</p>
-<div id=save_button><a href="/delete_book?book_name={{ book_name }}"><button>Delete</button></a></div>
+<style>
+    #{{ book_name }}_thumbnail
+    {
+        display: block;
+        float: left;
+        width: 21%;
+        height: 20%;
+        box-shadow: 5px 8px 20px  #888888;
+        background-size: cover;
+        background-image: url("{{ book_cover }}");
+        margin: 1%;
+        padding: 1%;
+    }
+    .book_thumbnail_action_buttons
+    {
+        display: none;
+    }
+    #{{ book_name }}_thumbnail:hover .book_thumbnail_action_buttons
+    {
+        display: block;
+    }
+</style>
+
+<div id="{{ book_name }}_thumbnail">
+    <a href="/show_book/{{ book_name }}">{{ book_name }}</a>
+    <div class="book_thumbnail_action_buttons">
+        <div id=save_button><a href="/delete_book?book_name={{ book_name }}"><button>Delete</button></a></div>
+        <div id=save_button><a href="/edit_book?book_name={{ book_name }}"><button>Edit</button></a></div>
+    </div>
+</div>
+
