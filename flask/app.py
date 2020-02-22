@@ -104,7 +104,7 @@ def list_books():
         book_content = json.load(open(book, 'r'))
         book_cover = book_content["Pages"]["page1"]["pageBackground"]
         page += render_template("book_thumbnail.html", book_name=book_name, book_cover=book_cover)
-    add_button = '<div id=save_button><a href=\"/bookInput\"><button>create a new book</button></a></div>'
+    add_button = '<div id=create_button><a href=\"/bookInput\"><button>create a new book</button></a></div>'
 
     return page + add_button
 
@@ -150,7 +150,9 @@ def generate_book(content_json=MOCK_BOOK):
 
 
 @app.route("/preview_book", methods=['GET'])
-def preview_book(content_json=MOCK_BOOK):
+def preview_book(content_json=MOCK_BOOK, overwrite=False):
+    if request.args:
+        overwrite = request.args['overwrite']
     data = json.loads(content_json)
     book_title = data['Title']
     pages = []
@@ -164,15 +166,17 @@ def preview_book(content_json=MOCK_BOOK):
         pages=pages
     )
 
-    #save_button = "<div class=bookmark><button>save</button></div>"
-    save_button = '<div id=save_button><a href=\"/save_book?book_name=%s\"><button>save</button></a></div>'%book_title
+    if overwrite:
+        save_button = '<div id=save_button><a href=\"/save_book/%s?overwrite=%s\"><button>save</button></a></div>' % \
+                  (book_title, overwrite)
+    else:
+        save_button = '<div id=save_button><a href=\"/save_book/%s\"><button>save</button></a></div>' % \
+                  book_title
     return save_button + rendered_book
 
 
 @app.route("/show_book/<book_name>", methods=['GET'])
 def show_book(book_name="default"):
-    # if request.args:
-    #     book_name = request.args['book_name']
     book_path = BOOK_JSON_DIR + book_name + '.json'
     json_path = os.path.join(app.root_path, book_path)
     content_file = open(json_path, 'r')
@@ -181,26 +185,26 @@ def show_book(book_name="default"):
     return generate_book(content_json=book)
 
 
-@app.route("/book1")
-def book1():
-    json_path = os.path.join(app.root_path, 'static/book1/book1.json')
-    content_file = open(json_path, 'r')
-    content_json = json.load(content_file)
-    book = {
-        "Title": "book1",
-        "TitlePic": "placeholder for picture url for title",
-        "Pages": content_json
-    }
-    return generate_book(content_json=book)
+# @app.route("/book1")
+# def book1():
+#     json_path = os.path.join(app.root_path, 'static/book1/book1.json')
+#     content_file = open(json_path, 'r')
+#     content_json = json.load(content_file)
+#     book = {
+#         "Title": "book1",
+#         "TitlePic": "placeholder for picture url for title",
+#         "Pages": content_json
+#     }
+#     return generate_book(content_json=book)
 
 
-@app.route("/book3")
-def book3():
-    json_path = os.path.join(app.root_path, 'static/book3/book3.json')
-    content_file = open(json_path, 'r')
-    content_json = json.load(content_file)
-    book = json.dumps(content_json)
-    return generate_book(content_json=book)
+# @app.route("/book3")
+# def book3():
+#     json_path = os.path.join(app.root_path, 'static/book3/book3.json')
+#     content_file = open(json_path, 'r')
+#     content_json = json.load(content_file)
+#     book = json.dumps(content_json)
+#     return generate_book(content_json=book)
 
 
 @app.route("/bookInput")
@@ -220,8 +224,11 @@ def input_form():
     )
 
 
-@app.route("/book_generator", methods=['POST'])
+@app.route("/book_generator", methods=['POST', 'GET'])
 def generate_book_from_webform():
+    if request.args:
+        overwrite = request.args['overwrite']
+
     data = request.form.to_dict(flat=False)
 
     book_title = data['bookTitle'][0]
@@ -391,23 +398,23 @@ def generate_book_from_webform():
     with open(tmp_json_path, "w") as f:
         f.write(book_json)
 
-    return preview_book(content_json=book_json)
+    return preview_book(content_json=book_json, overwrite=False)
 
 
-@app.route("/save_book")
-def save_book(book_name='tmp'):
+@app.route("/save_book/<book_name>")
+def save_book(book_name='tmp', overwrite=False):
     if request.args:
-        book_name = request.args['book_name']
+        overwrite = request.args['overwrite']
     books_path = os.path.join(app.root_path, BOOK_JSON_DIR)
     json_path = books_path + book_name + '.json'
     tmp_json_path = books_path + 'tmp.json'
 
-    if os.path.exists(json_path):
+    if os.path.exists(json_path) and not overwrite:
         alert = '<script type="text/javascript">' + \
-                'alert("The book name: "%s" already exists.")'%book_name + \
+                'alert("The book name: "%s" already exists.")' % book_name + \
                 '</script>'
         # raise Exception("File Exist Error")
-        return alert + "The book name already exists."
+        return alert + 'The book name: "%s" already exists.' % book_name
     os.system('mv ' + tmp_json_path + ' ' + json_path)
     alert = '<script type="text/javascript">' + \
             'alert("Saving the book to %s")'%book_name + \
@@ -453,6 +460,7 @@ def edit_book(book_name='tmp'):
 
     return render_template(
         "define_book.html",
+        overwrite=True,
         book_title=book_title,
         page1_input=page_inputs['page1'],
         page2_input=page_inputs['page2'],
@@ -465,6 +473,7 @@ def edit_book(book_name='tmp'):
         page9_input=page_inputs['page9'],
         page10_input=page_inputs['page10']
     )
+
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
