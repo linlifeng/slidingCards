@@ -475,5 +475,9 @@ def edit_book(book_name='tmp'):
     )
 
 
+@app.route("/draw")
+def draw():
+    return render_template('drawing.html')
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')

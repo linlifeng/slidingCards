@@ -7,13 +7,15 @@
       "pageType": "cover",
       "pageLayer": "layer100",
       "pageTitle": "characters of",
-      "pageText": "Rick and Morty"
+      "pageText": "Rick and Morty",
+      "pagePic": ""
     },
     "page2": {
       "pageType": "content",
       "pageLayer": "layer90",
       "pageTitle": "",
       "pageText": "Rick Sanchez",
+      "pageBackground": "",
       "pagePic": "https://static.miraheze.org/toxicfandomsandhatedomswiki/thumb/9/91/Rick_Sanchez_Render.png/330px-Rick_Sanchez_Render.png"
     },
     "page3": {
@@ -21,6 +23,7 @@
       "pageLayer": "layer80",
       "pageTitle": "",
       "pageText": "Morty Smith",
+      "pageBackground": "",
       "pagePic": "https://sketchok.com/images/articles/01-cartoons/007-rick-and-morty/07/11.jpg"
     },
     "page4": {
@@ -28,6 +31,7 @@
       "pageLayer": "layer70",
       "pageTitle": "",
       "pageText": "Summer Smith",
+      "pageBackground": "",
       "pagePic": "https://sketchok.com/images/articles/01-cartoons/007-rick-and-morty/05/12.jpg"
     },
     "page5": {
@@ -35,6 +39,7 @@
       "pageLayer": "layer60",
       "pageTitle": "",
       "pageText": "Beth Smith",
+      "pageBackground": "",
       "pagePic": "https://sketchok.com/images/articles/01-cartoons/007-rick-and-morty/04/11.jpg"
     },
     "page6": {
@@ -42,6 +47,7 @@
       "pageLayer": "layer50",
       "pageTitle": "",
       "pageText": "Jerry Smith",
+      "pageBackground": "",
       "pagePic": "https://sketchok.com/images/articles/01-cartoons/007-rick-and-morty/06/12.jpg"
     },
     "page7": {
@@ -49,6 +55,7 @@
       "pageLayer": "layer40",
       "pageTitle": "",
       "pageText": "Jessica",
+      "pageBackground": "",
       "pagePic": "https://i.pinimg.com/originals/9f/05/e6/9f05e6e9dfc82fadc75e5de5ec74a4bb.png"
     },
     "page8": {
@@ -56,6 +63,7 @@
       "pageLayer": "layer30",
       "pageTitle": "",
       "pageText": "Squanchy",
+      "pageBackground": "",
       "pagePic": "https://vignette.wikia.nocookie.net/rickandmorty/images/1/16/Squanchy_.png/revision/latest?cb=20160830140218"
     },
     "page9": {
@@ -63,6 +71,7 @@
       "pageLayer": "layer20",
       "pageTitle": "",
       "pageText": "Mr. Poopybutthole",
+      "pageBackground": "",
       "pagePic": "https://vignette.wikia.nocookie.net/rickandmorty/images/3/37/Mr_poopy_butthole.png/revision/latest?cb=20150819161234"
     },
     "page10": {
@@ -70,7 +79,8 @@
       "pageType": "backCover",
       "pageLayer": "layer10",
       "pageTitle": "That's it folks",
-      "pageText": "Nothing to see here."
+      "pageText": "Nothing to see here.",
+      "pagePic": ""
     }
   }
 }
