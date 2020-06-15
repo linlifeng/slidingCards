@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for
 import json
 import os
 import glob
+import logging
 
 # Global variables
 BOOK_JSON_DIR = 'static/books/'
@@ -406,7 +407,7 @@ def save_book(book_name='tmp', overwrite=False):
     if request.args:
         overwrite = request.args['overwrite']
     books_path = os.path.join(app.root_path, BOOK_JSON_DIR)
-    json_path = books_path + book_name + '.json'
+    json_path = books_path + book_name.replace(' ', '_') + '.json'
     tmp_json_path = books_path + 'tmp.json'
 
     if os.path.exists(json_path) and not overwrite:
@@ -415,7 +416,9 @@ def save_book(book_name='tmp', overwrite=False):
                 '</script>'
         # raise Exception("File Exist Error")
         return alert + 'The book name: "%s" already exists.' % book_name
-    os.system('mv ' + tmp_json_path + ' ' + json_path)
+
+    cmd = 'mv ' + tmp_json_path + ' ' + json_path
+    os.system(cmd)
     alert = '<script type="text/javascript">' + \
             'alert("Saving the book to %s")'%book_name + \
             '</script>'
