@@ -13,6 +13,17 @@
 </style>
 {% endif %}
 
+{% if pageType == "textContent" %}
+<style>
+	#{{ pageLayer }} .descriptionBox{
+		width:90%;
+	}
+	#{{ pageLayer }} .contentImage{
+		display: none
+	}
+</style>
+{% endif %}
+
 {% if not pageBackground == None and not pageBackground == '' %}
 <style>
 	#{{ pageLayer }} {
