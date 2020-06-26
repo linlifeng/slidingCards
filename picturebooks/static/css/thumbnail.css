@@ -1,0 +1,14 @@
+.book_thumbnail
+    {
+        display: block;
+        float: left;
+        width: 21%;
+        height: 20%;
+        box-shadow: 5px 8px 20px  #888888;
+        background-size: cover;
+        margin: 1%;
+        padding: 1%;
+    }
+.book_thumbnail_action_buttons{
+        float: left;
+}
