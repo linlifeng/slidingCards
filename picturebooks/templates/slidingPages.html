@@ -6,29 +6,34 @@
     <link rel="stylesheet" href ="{{ url_for('static', filename='css/base.css')}}">
 </head>
 
-
 <body>
     <div id = "pageIndexToggle"></div>
     <div id="pageIndexBar" style="display:none">
-        <p class="bookmark" id="layer100tag" onclick="scrollto('0')">Cover</p>
-        <p class="bookmark" id="layer90tag" onclick="scrollto('.1')">Page 1</p>
-        <p class="bookmark" id="layer80tag" onclick="scrollto('.2')">Page 2</p>
-        <p class="bookmark" id="layer70tag" onclick="scrollto('.3')">Page 3</p>
-        <p class="bookmark" id="layer60tag" onclick="scrollto('.4')">Page 4</p>
-        <p class="bookmark" id="layer50tag" onclick="scrollto('.5')">Page 5</p>
-        <p class="bookmark" id="layer40tag" onclick="scrollto('.6')">Page 6</p>
-        <p class="bookmark" id="layer30tag" onclick="scrollto('.7')">Page 7</p>
-        <p class="bookmark" id="layer20tag" onclick="scrollto('.8')">Page 8</p>
-        <p class="bookmark" id="layer10tag" onclick="scrollto('.9')">About this book</p>
+        {% for page in pages %}
+            {% set tag_height = (loop.index - 1) * 10 %}
+            {% set page_height = (loop.index - 1) / 10 %}
+            {% set layer_tag = 100 - (loop.index - 1) * 10 %}
+            <p class="bookmark" style="top:{{ tag_height }}%" id="layer{{ layer_tag }}tag"  onclick="scrollto('{{ page_height }}')">Page {{ loop.index }}</p>
+<!--        <p class="bookmark" id="layer100tag" onclick="scrollto('0')">Cover</p>-->
+<!--        <p class="bookmark" id="layer90tag" onclick="scrollto('.1')">Page 1</p>-->
+<!--        <p class="bookmark" id="layer80tag" onclick="scrollto('.2')">Page 2</p>-->
+<!--        <p class="bookmark" id="layer70tag" onclick="scrollto('.3')">Page 3</p>-->
+<!--        <p class="bookmark" id="layer60tag" onclick="scrollto('.4')">Page 4</p>-->
+<!--        <p class="bookmark" id="layer50tag" onclick="scrollto('.5')">Page 5</p>-->
+<!--        <p class="bookmark" id="layer40tag" onclick="scrollto('.6')">Page 6</p>-->
+<!--        <p class="bookmark" id="layer30tag" onclick="scrollto('.7')">Page 7</p>-->
+<!--        <p class="bookmark" id="layer20tag" onclick="scrollto('.8')">Page 8</p>-->
+<!--        <p class="bookmark" id="layer10tag" onclick="scrollto('.9')">About this book</p>-->
+        {% endfor %}
     </div>
 
     {% for page in pages %}
-    {{ page|safe }}
+        {{ page|safe }}
     {% endfor %}
 
 </body>
 <script>
-
+// flying up pages as user scrolls -- parallax effect.
 $(window).scroll(function() {
 	var toppos=jQuery(window).scrollTop();
 	var scrollHeight = jQuery(window).height();
@@ -44,92 +49,110 @@ $(window).scroll(function() {
 	jQuery('#layer100tag').css('fontSize',25);
 
 
-	if(topperc > 0.0 ){
-		//$('#layer100').fadeOut("slow");
-		jQuery('#layer100').css('top',-topperc*1000+'%');
+
+{% for page in pages %}
+    {% set layer = 100 - (loop.index - 1) * 10 %}
+    {% set layer_tag = 90 - (loop.index - 1) * 10 %}
+    {% set page_height = (loop.index - 1) / 10 %}
+
+	if(topperc > {{ page_height }} ){
+		jQuery('#layer{{ layer }}').css('top',{{ (loop.index - 1) * 100 }}-topperc*1000+'%');
 		jQuery('.bookmark').css('fontSize',18);
-		jQuery('#layer90tag').css('fontSize',25);
+		jQuery('#layer{{ layer_tag }}tag').css('fontSize',25);
 	}
 	else{
-		//$('#layer100').fadeIn("slow");
-		jQuery('#layer100').css('top','0%');
-
+		jQuery('#layer{{ layer }}').css('top','0%');
 	}
-
-	if(topperc > 0.1 ){
-		//$('#layer90').fadeOut("slow");
-		jQuery('#layer90').css('top',100-topperc*1000+'%');
-		jQuery('.bookmark').css('fontSize',18);
-		jQuery('#layer80tag').css('fontSize',25);
-	}
-	else{
-		//$('#layer90').fadeIn("slow");
-		jQuery('#layer90').css('top','0%');
-	}
-
-	if(topperc > 0.2){
-		jQuery('#layer80').css('top',200-topperc*1000+'%');
-		jQuery('.bookmark').css('fontSize',18);
-		jQuery('#layer70tag').css('fontSize',25);
-	}
-	else{
-		jQuery('#layer80').css('top','0px');
-	}
-
-	if(topperc > 0.3){
-		jQuery('#layer70').css('top',300-topperc*1000+'%');
-		jQuery('.bookmark').css('fontSize',18);
-		jQuery('#layer60tag').css('fontSize',25);
-	}
-	else{
-		jQuery('#layer70').css('top','0px');
-	}
-
-	if(topperc > 0.4){
-		jQuery('#layer60').css('top',400-topperc*1000+'%');
-		jQuery('.bookmark').css('fontSize',18);
-		jQuery('#layer50tag').css('fontSize',25);
-	}
-	else{
-		jQuery('#layer60').css('top','0px');
-	}
-
-	if(topperc > 0.5){
-		jQuery('#layer50').css('top',500-topperc*1000+'%');
-		jQuery('.bookmark').css('fontSize',18);
-		jQuery('#layer40tag').css('fontSize',25);
-	}
-	else{
-		jQuery('#layer50').css('top','0px');
-	}
-
-	if(topperc > 0.6){
-		jQuery('#layer40').css('top',600-topperc*1000+'%');
-		jQuery('.bookmark').css('fontSize',18);
-		jQuery('#layer30tag').css('fontSize',25);
-	}
-	else{
-		jQuery('#layer40').css('top','0px');
-	}
-
-	if(topperc > 0.7){
-		jQuery('#layer30').css('top',700-topperc*1000+'%');
-		jQuery('.bookmark').css('fontSize',18);
-		jQuery('#layer20tag').css('fontSize',25);
-	}
-	else{
-		jQuery('#layer30').css('top','0px');
-	}
+{% endfor %}
 
 
-	if(topperc > 0.8){
-		jQuery('#layer20').css('top',800-topperc*1000+'%');
-		jQuery('.bookmark').css('fontSize',18);
-		jQuery('#layer10tag').css('fontSize',25);
-	}
-	else{
-		jQuery('#layer20').css('top','0px');
-	}
+
+<!--	if(topperc > 0.0 ){-->
+<!--		//$('#layer100').fadeOut("slow");-->
+<!--		jQuery('#layer100').css('top',-topperc*1000+'%');-->
+<!--		jQuery('.bookmark').css('fontSize',18);-->
+<!--		jQuery('#layer90tag').css('fontSize',25);-->
+<!--	}-->
+<!--	else{-->
+<!--		//$('#layer100').fadeIn("slow");-->
+<!--		jQuery('#layer100').css('top','0%');-->
+
+<!--	}-->
+
+<!--	if(topperc > 0.1 ){-->
+<!--		//$('#layer90').fadeOut("slow");-->
+<!--		jQuery('#layer90').css('top',100-topperc*1000+'%');-->
+<!--		jQuery('.bookmark').css('fontSize',18);-->
+<!--		jQuery('#layer80tag').css('fontSize',25);-->
+<!--	}-->
+<!--	else{-->
+<!--		//$('#layer90').fadeIn("slow");-->
+<!--		jQuery('#layer90').css('top','0%');-->
+<!--	}-->
+
+<!--	if(topperc > 0.2){-->
+<!--		jQuery('#layer80').css('top',200-topperc*1000+'%');-->
+<!--		jQuery('.bookmark').css('fontSize',18);-->
+<!--		jQuery('#layer70tag').css('fontSize',25);-->
+<!--	}-->
+<!--	else{-->
+<!--		jQuery('#layer80').css('top','0px');-->
+<!--	}-->
+
+<!--	if(topperc > 0.3){-->
+<!--		jQuery('#layer70').css('top',300-topperc*1000+'%');-->
+<!--		jQuery('.bookmark').css('fontSize',18);-->
+<!--		jQuery('#layer60tag').css('fontSize',25);-->
+<!--	}-->
+<!--	else{-->
+<!--		jQuery('#layer70').css('top','0px');-->
+<!--	}-->
+
+<!--	if(topperc > 0.4){-->
+<!--		jQuery('#layer60').css('top',400-topperc*1000+'%');-->
+<!--		jQuery('.bookmark').css('fontSize',18);-->
+<!--		jQuery('#layer50tag').css('fontSize',25);-->
+<!--	}-->
+<!--	else{-->
+<!--		jQuery('#layer60').css('top','0px');-->
+<!--	}-->
+
+<!--	if(topperc > 0.5){-->
+<!--		jQuery('#layer50').css('top',500-topperc*1000+'%');-->
+<!--		jQuery('.bookmark').css('fontSize',18);-->
+<!--		jQuery('#layer40tag').css('fontSize',25);-->
+<!--	}-->
+<!--	else{-->
+<!--		jQuery('#layer50').css('top','0px');-->
+<!--	}-->
+
+<!--	if(topperc > 0.6){-->
+<!--		jQuery('#layer40').css('top',600-topperc*1000+'%');-->
+<!--		jQuery('.bookmark').css('fontSize',18);-->
+<!--		jQuery('#layer30tag').css('fontSize',25);-->
+<!--	}-->
+<!--	else{-->
+<!--		jQuery('#layer40').css('top','0px');-->
+<!--	}-->
+
+<!--	if(topperc > 0.7){-->
+<!--		jQuery('#layer30').css('top',700-topperc*1000+'%');-->
+<!--		jQuery('.bookmark').css('fontSize',18);-->
+<!--		jQuery('#layer20tag').css('fontSize',25);-->
+<!--	}-->
+<!--	else{-->
+<!--		jQuery('#layer30').css('top','0px');-->
+<!--	}-->
+
+
+<!--	if(topperc > 0.8){-->
+<!--		jQuery('#layer20').css('top',800-topperc*1000+'%');-->
+<!--		jQuery('.bookmark').css('fontSize',18);-->
+<!--		jQuery('#layer10tag').css('fontSize',25);-->
+<!--	}-->
+<!--	else{-->
+<!--		jQuery('#layer20').css('top','0px');-->
+<!--	}-->
 
 
 });
@@ -146,15 +169,4 @@ $(window).scroll(function() {
     });
 
 </script>
-<!--	<script type="text/javascript">-->
-<!--	$(document).ready(function(){-->
-<!--		$('#nav').localScroll(800);-->
-<!--		$('#intro').parallax("50%", 0.1);-->
-<!--		$('#second').parallax("50%", 0.1);-->
-<!--		$('.bg').parallax("50%", 0.4);-->
-<!--		$('#third').parallax("50%", 0.3);-->
-<!--		$('#pageIndexBar').hide();-->
-<!--		$('.bookmark').hide();-->
-<!--	})-->
-<!--	</script>-->
 </html>

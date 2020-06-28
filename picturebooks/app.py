@@ -2,7 +2,6 @@ from flask import Flask, request, render_template, redirect, url_for
 import json
 import os
 import glob
-import logging
 
 # Global variables
 BOOK_JSON_DIR = 'static/books/'
@@ -96,7 +95,6 @@ def list_books():
     book_jsons = glob.glob(os.path.join(app.root_path, BOOK_JSON_DIR) + '*.json')
     book_jsons.sort(key=os.path.getmtime, reverse=True)
 
-    # print(book_jsons)
     page = ''
     for book in book_jsons:
         book_name = '.'.join(os.path.basename(book).split('.')[:-1])
@@ -110,7 +108,7 @@ def list_books():
     return page + add_button
 
 
-def generate_bookpage(page_data=MOCK_PAGES):
+def generate_book_page(page_data=MOCK_PAGES):
     data = page_data
     page_title = data['pageTitle']
     if 'pagePic' in data:
@@ -141,7 +139,7 @@ def generate_book(content_json=MOCK_BOOK):
     book_title = data['Title']
     pages = []
     for page_name in data['Pages']:
-        page_html = generate_bookpage(page_data=data['Pages'][page_name])
+        page_html = generate_book_page(page_data=data['Pages'][page_name])
         pages.append(page_html)
     return render_template(
         "slidingPages.html",
@@ -158,7 +156,7 @@ def preview_book(content_json=MOCK_BOOK, overwrite=False):
     book_title = data['Title']
     pages = []
     for page_name in data['Pages']:
-        page_html = generate_bookpage(page_data=data['Pages'][page_name])
+        page_html = generate_book_page(page_data=data['Pages'][page_name])
         pages.append(page_html)
 
     rendered_book = render_template(
@@ -184,28 +182,6 @@ def show_book(book_name="default"):
     content_json = json.load(content_file)
     book = json.dumps(content_json)
     return generate_book(content_json=book)
-
-
-# @app.route("/book1")
-# def book1():
-#     json_path = os.path.join(app.root_path, 'static/book1/book1.json')
-#     content_file = open(json_path, 'r')
-#     content_json = json.load(content_file)
-#     book = {
-#         "Title": "book1",
-#         "TitlePic": "placeholder for picture url for title",
-#         "Pages": content_json
-#     }
-#     return generate_book(content_json=book)
-
-
-# @app.route("/book3")
-# def book3():
-#     json_path = os.path.join(app.root_path, 'static/book3/book3.json')
-#     content_file = open(json_path, 'r')
-#     content_json = json.load(content_file)
-#     book = json.dumps(content_json)
-#     return generate_book(content_json=book)
 
 
 @app.route("/bookInput")
